@@ -1,0 +1,31 @@
+{
+  "name": "voischev.github.io",
+  "version": "1.0.0",
+  "description": "Личный сайт",
+  "main": "index.html",
+  "scripts": {
+    "make": "./make.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voischev/voischev.github.io.git"
+  },
+  "keywords": [
+    "html",
+    "site",
+    "posthtml",
+    "build",
+    "static"
+  ],
+  "author": "voischev-ivan@ya.ru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/voischev/voischev.github.io/issues"
+  },
+  "homepage": "https://github.com/voischev/voischev.github.io#readme",
+  "dependencies": {
+    "marked": "^0.8.0",
+    "posthtml": "^0.12.0"
+  }
+}
