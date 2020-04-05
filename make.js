@@ -22,7 +22,14 @@ posthtml()
     })
     .process(readFileSync('./index.html').toString(), { sync: true })
 
-const time = (t) => t.toISOString().substring(0,10)
+const getTime = function(time) {
+    const t = time.toISOString()
+    return {
+        tag: 'time',
+        attrs: { datetime: t },
+        content: t.substring(0,10),
+    }
+}
 
 const getFiles = function(dir, result = []) {
     const files = readdirSync(dir)
@@ -103,10 +110,7 @@ const makePage = function(mdPath) {
                         {
                             tag: 'div',
                             content: [
-                                {
-                                    tag: 'time',
-                                    content: time(mtime),
-                                },
+                                getTime(mtime),
                                 ' последнее изменение',
                             ],
                         },
