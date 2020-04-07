@@ -1,0 +1,61 @@
+#!/bin/bash
+files=(
+    "./android-chrome-192x192.png"
+    "./android-chrome-512x512.png"
+    "./apple-touch-icon.png"
+    "./favicon-16x16.png"
+    "./favicon-32x32.png"
+    "./favicon.ico"
+    "./site.webmanifest"
+    "./CNAME"
+    "./LICENSE"
+    "./README.md"
+    "./avatar.jpg"
+    "./humans.txt"
+    "./index.html"
+    )
+for file in ${files[@]}
+do
+    if [[ -f "$file" ]]
+    then
+        echo "$file релиз"
+        cp $file "$file".release
+    fi
+done
+
+for file in ./notes/*/*
+do
+    if [[ -f "$file" ]] && [[ $file == *.html ]]
+    then
+        echo "$file релиз"
+        cp $file "$file".release
+    fi
+done
+
+git co master
+
+for file in ${files[@]}
+do
+    if [[ -f "$file" ]]
+    then
+        echo "$file переименован"
+        mv "$file".release $file
+    fi
+done
+
+for file in ./notes/*/*
+do
+    if [[ -f "$file" ]] && [[ $file == *.html ]]
+    then
+        echo "$file релиз"
+        mv "$file".release $file
+    fi
+done
+
+git add .
+
+git ci -m "Релиз $(date "+%Y-%m-%d")"
+
+git push
+
+git co dev

@@ -3,8 +3,8 @@
 const posthtml = require('posthtml')
 const marked = require('marked')
 const {
-    readFileSync,
     readdirSync,
+    readFileSync,
     writeFileSync,
     statSync,
 } = require('fs')
@@ -24,6 +24,19 @@ posthtml()
     })
     .process(readFileSync('./index.html').toString(), { sync: true })
 
+const getFiles = function(dir, result = [], RE) {
+    const files = readdirSync(dir)
+    for (let i in files) {
+        let name = dir + '/' + files[i]
+        if (statSync(name).isDirectory()) {
+            getFiles(name, result, RE)
+        } else if (RE.test(name)) {
+            result.push(name)
+        }
+    }
+    return result
+}
+
 const getTime = function(time) {
     const t = time.toISOString()
     return {
@@ -31,19 +44,6 @@ const getTime = function(time) {
         attrs: { datetime: t },
         content: t.substring(0,10),
     }
-}
-
-const getFiles = function(dir, result = []) {
-    const files = readdirSync(dir)
-    for (let i in files) {
-        let name = dir + '/' + files[i]
-        if (statSync(name).isDirectory()) {
-            getFiles(name, result)
-        } else if (/\.md$/.test(name)) {
-            result.push(name)
-        }
-    }
-    return result
 }
 
 const makePage = function(mdPath) {
@@ -131,7 +131,7 @@ const makePage = function(mdPath) {
     return result
 }
 
-const files = getFiles('./notes')
+const files = getFiles('./notes', [], /\.md$/)
 
 for (let i = 0; i < files.length; i++) {
     const file = files[i]
