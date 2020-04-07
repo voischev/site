@@ -14,6 +14,8 @@ const {
 
 let doctype
 let head
+let nav
+let footer = { tag: 'footer', content: '© ' + new Date().getFullYear() }
 
 posthtml()
     .use(function(tree) {
@@ -106,7 +108,11 @@ const makePage = function(mdPath) {
                 {
                     tag: 'body',
                     content: [].concat(
-                        tree,
+                        nav,
+                        {
+                            tag: 'main',
+                            content: tree,
+                        },
                         {
                             tag: 'div',
                             content: [
@@ -114,7 +120,8 @@ const makePage = function(mdPath) {
                                 ' последнее изменение',
                             ],
                         },
-                    )
+                        footer,
+                    ),
                 },
             ]
         })
