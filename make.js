@@ -14,6 +14,7 @@ const {
 
 let doctype
 let head
+let metrika
 let nav
 let footer = { tag: 'footer', content: '© ' + new Date().getFullYear() }
 
@@ -21,6 +22,7 @@ posthtml()
     .use(function(tree) {
         tree.match(/!doctype/, node => (doctype = node))
         tree.match({ tag: 'head' }, node => (head = node))
+        tree.match({ tag: 'img', attrs: { src: /mc.yandex.ru\/watch/ }}, node => (metrika = node))
     })
     .process(readFileSync('./index.html').toString(), { sync: true })
 
@@ -121,6 +123,7 @@ const makePage = function(mdPath) {
                             ],
                         },
                         footer,
+                        metrika,
                     ),
                 },
             ]
