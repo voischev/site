@@ -48,7 +48,41 @@ const getTime = function(time) {
     }
 }
 
-const makePage = function(mdPath) {
+const makeHead = function(tree, options = {}) {
+    const {
+        title,
+        description,
+    } = options
+
+    tree.walk.bind(head)(function(node) {
+        if (title === undefined) {
+            throw new Error('Отсутствует заголовок: ' + mdPath)
+        }
+
+        if (node.tag === 'title') {
+            node.content = title
+        }
+
+        if (!node.attrs) {
+            return node
+        }
+
+        if (node.attrs.property === 'og:title' ||
+            node.attrs.property === 'twitter:title') {
+            node.attrs.content = title
+        }
+
+        if (node.attrs.name === 'description' ||
+            node.attrs.property === 'og:description' ||
+            node.attrs.property === 'twitter:description') {
+            node.attrs.content = description
+        }
+
+        return node
+    })
+}
+
+const makePage = function(mdPath, cb) {
     const html = marked(readFileSync(mdPath).toString())
     const {
         mtime,
@@ -57,7 +91,7 @@ const makePage = function(mdPath) {
     let title
     let description
 
-    const result = posthtml()
+    const page = posthtml()
         .use(function(tree) {
             tree.match({ tag: 'h1' }, function(node) {
                 if (title) {
@@ -77,32 +111,7 @@ const makePage = function(mdPath) {
                 return node
             })
 
-            tree.walk.bind(head)(function(node) {
-                if (title === undefined) {
-                    throw new Error('Отсутствует заголовок: ' + mdPath)
-                }
-
-                if (node.tag === 'title') {
-                    node.content = title
-                }
-
-                if (!node.attrs) {
-                    return node
-                }
-
-                if (node.attrs.property === 'og:title' ||
-                    node.attrs.property === 'twitter:title') {
-                    node.attrs.content = title
-                }
-
-                if (node.attrs.name === 'description' ||
-                    node.attrs.property === 'og:description' ||
-                    node.attrs.property === 'twitter:description') {
-                    node.attrs.content = description
-                }
-
-                return node
-            })
+            makeHead(tree, { title, description })
 
             return [
                 doctype,
@@ -131,15 +140,89 @@ const makePage = function(mdPath) {
         .process(html, { sync: true })
         .html
 
+    cb({
+        url: dirname(mdPath).substring(1),
+        title,
+        description,
+        page,
+    })
+}
+
+const makeCatalog = function(options = {}) {
+    const {
+        title,
+        description,
+        links,
+    } = options
+
+    const result = posthtml()
+        .use(function(tree) {
+
+            makeHead(tree, { title, description })
+
+            return [
+                doctype,
+                head,
+                {
+                    tag: 'body',
+                    content: [].concat(
+                        nav,
+                        {
+                            tag: 'main',
+                            content: {
+                                tag: 'ul',
+                                content: links.map(function(item) {
+                                    return {
+                                        tag: 'li',
+                                        content: {
+                                            tag: 'a',
+                                            attrs: {
+                                                href: item.url,
+                                            },
+                                            content: item.title,
+                                        },
+                                    }
+                                }),
+                            },
+                        },
+                        footer,
+                        metrika,
+                    ),
+                },
+            ]
+        })
+        .process([], { skipParse:true, sync: true })
+        .html
+
     return result
 }
 
+const tLinks = []
 const files = getFiles('./t', [], /\.md$/)
 
 for (let i = 0; i < files.length; i++) {
     const file = files[i]
-    writeFileSync(dirname(file) + '/index.html', makePage(file))
+    makePage(file, function(data = {}) {
+        const {
+            url,
+            title,
+            page,
+        } = data
+
+        writeFileSync('.' + url + '/index.html', page)
+
+        tLinks.push({
+            url,
+            title,
+        })
+    })
 }
+
+writeFileSync('./t/index.html', makeCatalog({
+    title: 'Заметки',
+    description: 'Все заметки',
+    links: tLinks,
+}))
 
 console.log('Завершено')
 
