@@ -18,37 +18,33 @@ for file in ${files[@]}
 do
     if [[ -f "$file" ]]
     then
-        echo "$file релиз"
         cp $file "$file".release
     fi
 done
 
 for file in ./t/*/*
 do
-    if [[ -f "$file" ]] && [[ $file == *.html ]]
+    if [[ -f "$file" ]] && [[ $file != *.md ]] && [[ $file != *.release ]]
     then
-        echo "$file релиз"
         cp $file "$file".release
     fi
 done
 
-git co master
+git co -f master
 
 for file in ${files[@]}
 do
     if [[ -f "$file" ]]
     then
-        echo "$file переименован"
         mv "$file".release $file
     fi
 done
 
 for file in ./t/*/*
 do
-    if [[ -f "$file" ]] && [[ $file == *.html ]]
+    if [[ -f "$file" ]] && [[ $file == *.release ]]
     then
-        echo "$file релиз"
-        mv "$file".release $file
+        mv "$file" ${file%.*}
     fi
 done
 
