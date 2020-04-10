@@ -23,7 +23,7 @@ do
     fi
 done
 
-for file in ./notes/*/*
+for file in ./t/*/*
 do
     if [[ -f "$file" ]] && [[ $file == *.html ]]
     then
@@ -43,7 +43,7 @@ do
     fi
 done
 
-for file in ./notes/*/*
+for file in ./t/*/*
 do
     if [[ -f "$file" ]] && [[ $file == *.html ]]
     then

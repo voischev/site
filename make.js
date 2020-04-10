@@ -134,7 +134,7 @@ const makePage = function(mdPath) {
     return result
 }
 
-const files = getFiles('./notes', [], /\.md$/)
+const files = getFiles('./t', [], /\.md$/)
 
 for (let i = 0; i < files.length; i++) {
     const file = files[i]
