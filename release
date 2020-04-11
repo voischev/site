@@ -13,6 +13,7 @@ files=(
     "./avatar.jpg"
     "./humans.txt"
     "./index.html"
+    "./t/index.html"
     )
 for file in ${files[@]}
 do
