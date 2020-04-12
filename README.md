@@ -1,1 +1,1 @@
-# voischev.ru
+[Перейти на сайт](https://voischev.ru)
