@@ -1,0 +1,24 @@
+{
+    "checkYo": false,
+    "excludeFiles": ["node_modules"],
+    "fileExtensions": [".md", ".html"],
+    "format": "auto",
+    "ignoreTags": [
+        "code",
+        "kbd",
+        "object",
+        "samp",
+        "script",
+        "style",
+        "var"
+    ],
+    "maxRequests": 2,
+    "lang": "en,ru",
+    "report": [
+        "console"
+    ],
+    "dictionary": [
+        "voischev",
+        "Воищев"
+    ]
+}

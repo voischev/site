@@ -4,7 +4,7 @@
   "description": "Личный сайт",
   "main": "index.html",
   "scripts": {
-    "make": "./make.js",
+    "make": "yaspeller . &&./make.js",
     "release": "npm run make && ./release",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
