@@ -84,10 +84,11 @@ const makeHead = function(tree, options = {}) {
 }
 
 const makePage = function(mdPath, cb) {
-    const html = marked(readFileSync(mdPath).toString())
     const {
         mtime,
     } = statSync(mdPath)
+
+    const html = marked(readFileSync(mdPath).toString())
 
     let title
     let description
@@ -142,10 +143,11 @@ const makePage = function(mdPath, cb) {
         .html
 
     cb({
-        url: dirname(mdPath).substring(1),
+        url: dirname(mdPath).substring(1) + '/',
         title,
         description,
         page,
+        mtime,
     })
 }
 
@@ -208,13 +210,15 @@ for (let i = 0; i < files.length; i++) {
             url,
             title,
             page,
+            mtime,
         } = data
 
-        writeFileSync('.' + url + '/index.html', page)
+        writeFileSync('.' + url + 'index.html', page)
 
         tLinks.push({
             url,
             title,
+            mtime,
         })
     })
 }
