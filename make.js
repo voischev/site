@@ -22,6 +22,7 @@ posthtml()
     .use(function(tree) {
         tree.match(/!doctype/, node => (doctype = node))
         tree.match({ tag: 'head' }, node => (head = node))
+        tree.match({ tag: 'nav' }, node => (nav = node))
         tree.match({ tag: 'img', attrs: { src: /mc.yandex.ru\/watch/ }}, node => (metrika = node))
     })
     .process(readFileSync('./index.html').toString(), { sync: true })
