@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+const {
+    execSync,
+} = require('child_process')
+
 const posthtml = require('posthtml')
 const marked = require('marked')
 const {
@@ -40,13 +44,8 @@ const getFiles = function(dir, result = [], RE) {
     return result
 }
 
-const getTime = function(time) {
-    const t = time.toISOString()
-    return {
-        tag: 'time',
-        attrs: { datetime: t },
-        content: t.substring(0,10),
-    }
+const getDate = function(file) {
+    return new Date(parseInt(execSync('git log --format="%at" -n 1 ' + file).toString().replace('\n', '')) * 1000)
 }
 
 const makeHead = function(tree, options = {}) {
@@ -84,10 +83,8 @@ const makeHead = function(tree, options = {}) {
 }
 
 const makePage = function(mdPath, cb) {
-    const {
-        mtime,
-    } = statSync(mdPath)
-
+    const date = getDate(mdPath)
+    const isoDate = date.toISOString()
     const html = marked(readFileSync(mdPath).toString())
 
     let title
@@ -129,7 +126,11 @@ const makePage = function(mdPath, cb) {
                         {
                             tag: 'div',
                             content: [
-                                getTime(mtime),
+                                {
+                                    tag: 'time',
+                                    attrs: { datetime: isoDate },
+                                    content: isoDate.substring(0,10),
+                                },
                                 ' последнее изменение',
                             ],
                         },
@@ -147,7 +148,7 @@ const makePage = function(mdPath, cb) {
         title,
         description,
         page,
-        mtime,
+        date,
     })
 }
 
@@ -174,7 +175,7 @@ const makeCatalog = function(options = {}) {
                             tag: 'main',
                             content: {
                                 tag: 'ul',
-                                content: links.map(function(item) {
+                                content: links.sort((a, b,) => (b.date - a.date)).map(function(item) {
                                     return {
                                         tag: 'li',
                                         content: {
@@ -210,7 +211,7 @@ for (let i = 0; i < files.length; i++) {
             url,
             title,
             page,
-            mtime,
+            date,
         } = data
 
         writeFileSync('.' + url + 'index.html', page)
@@ -218,7 +219,7 @@ for (let i = 0; i < files.length; i++) {
         tLinks.push({
             url,
             title,
-            mtime,
+            date,
         })
     })
 }
