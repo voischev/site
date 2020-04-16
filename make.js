@@ -45,7 +45,8 @@ const getFiles = function(dir, result = [], RE) {
 }
 
 const getDate = function(file) {
-    return new Date(parseInt(execSync('git log --format="%at" -n 1 ' + file).toString().replace('\n', '')) * 1000)
+    const time = execSync('git log --format="%at" -n 1 ' + file).toString().replace('\n', '')
+    return time.length ? new Date(parseInt(time) * 1000) : new Date()
 }
 
 const makeHead = function(tree, options = {}) {

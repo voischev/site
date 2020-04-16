@@ -17,11 +17,17 @@
     ],
     "maxRequests": 2,
     "lang": "en,ru",
+    "ignoreUrls": true,
+    "checkYo": true,
     "report": [
         "console"
     ],
     "dictionary": [
         "voischev",
-        "Воищев"
+        "Воищев",
+        "github",
+        "dotfiles",
+        "symlink",
+        "vimrc"
     ]
 }
