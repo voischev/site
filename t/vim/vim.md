@@ -142,6 +142,12 @@ CTRL+r+=512/2 Enter
 256
 ```
 
+Сортировка по длине строк
+
+```
+:'<,'> ! awk '{ print length(), $0 | "sort -n | cut -d\\ -f2-" }'
+```
+
 ## Ссылки
 
 * [https://danielmiessler.com/study/vim/](https://danielmiessler.com/study/vim/)
