@@ -148,6 +148,14 @@ CTRL+r+=512/2 Enter
 :'<,'> ! awk '{ print length(), $0 | "sort -n | cut -d\\ -f2-" }'
 ```
 
+## Синтаксис
+
+Открыть файл без расширения с нужным синтаксисом. Добавить в конец файла комментарий
+
+```
+# vim: syntax=config
+```
+
 ## Ссылки
 
 * [https://danielmiessler.com/study/vim/](https://danielmiessler.com/study/vim/)
