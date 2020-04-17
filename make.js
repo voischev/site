@@ -157,8 +157,31 @@ const makeCatalog = function(options = {}) {
     const {
         title,
         description,
-        links,
+        dir,
     } = options
+
+    const links = []
+    const files = getFiles(dir, [], /\.md$/)
+
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i]
+        makePage(file, function(data = {}) {
+            const {
+                url,
+                title,
+                page,
+                date,
+            } = data
+
+            writeFileSync('.' + url + 'index.html', page)
+
+            links.push({
+                url,
+                title,
+                date,
+            })
+        })
+    }
 
     const result = posthtml()
         .use(function(tree) {
@@ -196,40 +219,23 @@ const makeCatalog = function(options = {}) {
                 },
             ]
         })
-        .process([], { skipParse:true, sync: true })
+        .process([], { skipParse: true, sync: true })
         .html
 
-    return result
+    writeFileSync(dir + '/index.html', result)
 }
 
-const tLinks = []
-const files = getFiles('./t', [], /\.md$/)
-
-for (let i = 0; i < files.length; i++) {
-    const file = files[i]
-    makePage(file, function(data = {}) {
-        const {
-            url,
-            title,
-            page,
-            date,
-        } = data
-
-        writeFileSync('.' + url + 'index.html', page)
-
-        tLinks.push({
-            url,
-            title,
-            date,
-        })
-    })
-}
-
-writeFileSync('./t/index.html', makeCatalog({
+makeCatalog({
     title: 'Заметки',
     description: 'Все заметки',
-    links: tLinks,
-}))
+    dir: './t',
+})
+
+makeCatalog({
+    title: 'Инвестиции',
+    description: 'Итоги инвестиций',
+    dir: './invest'
+})
 
 console.log('Завершено')
 
