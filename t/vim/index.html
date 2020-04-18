@@ -16,8 +16,9 @@
     </head><body><nav>
             <a href="/">/</a>
             <a href="/t/">Заметки</a>
-            <a href="https://twitter.com/voischev">Twitter</a>
-            <a href="https://github.com/voischev">GitHub</a>
+            <a href="/invest/">#инвестиции</a>
+            <a href="https://twitter.com/voischev" target="_blank">Twitter</a>
+            <a href="https://github.com/voischev" target="_blank">GitHub</a>
         </nav><main><h1 id="vim">Vim</h1>
 <p>Заметка про VIM</p>
 <p><img src="vim.png" alt="Горячие клавиши в Vim"></p>
@@ -60,7 +61,10 @@ nnoremap g# g#zz</code></pre><p>Загрузить предыдущую сесс
 δ   d*</code></pre><h2 id="функции">Функции</h2>
 <p>В режиме редактирования активируем калькулятор CTRL+r+= вводим выражение, жмём Enter</p>
 <pre><code>CTRL+r+=512/2 Enter
-256</code></pre><h2 id="ссылки">Ссылки</h2>
+256</code></pre><p>Сортировка по длине строк</p>
+<pre><code>:&#39;&lt;,&#39;&gt; ! awk &#39;{ print length(), $0 | &quot;sort -n | cut -d\\ -f2-&quot; }&#39;</code></pre><h2 id="синтаксис">Синтаксис</h2>
+<p>Открыть файл без расширения с нужным синтаксисом. Добавить в конец файла комментарий</p>
+<pre><code># vim: syntax=config</code></pre><h2 id="ссылки">Ссылки</h2>
 <ul>
 <li><a href="https://danielmiessler.com/study/vim/">https://danielmiessler.com/study/vim/</a></li>
 <li><a href="https://github.com/mathiasbynens/dotfiles">https://github.com/mathiasbynens/dotfiles</a></li>
@@ -70,4 +74,4 @@ nnoremap g# g#zz</code></pre><p>Загрузить предыдущую сесс
 <li><a href="https://github.com/swaroopch/dotvim/blob/master/vimrc">https://github.com/swaroopch/dotvim/blob/master/vimrc</a></li>
 <li><a href="https://github.com/swaroopch/dotvim/blob/master/vimrc">https://github.com/madundead/stuff/blob/master/dotfiles/vim/vimrc.symlink</a></li>
 </ul>
-</main><div><time datetime="2020-04-17T05:50:46.000Z">2020-04-17</time> последнее изменение</div><footer>© 2020</footer><img src="https://mc.yandex.ru/watch/58298050" style="position:absolute; left:-9999px;" alt=""></body>
+</main><div><time datetime="2020-04-17T12:38:54.000Z">2020-04-17</time> последнее изменение</div><footer>© 2020</footer><img src="https://mc.yandex.ru/watch/58298050" style="position:absolute; left:-9999px;" alt=""></body>
