@@ -20,7 +20,10 @@ let doctype
 let head
 let metrika
 let nav
-let footer = { tag: 'footer', content: '© ' + new Date().getFullYear() }
+let footer = {
+    tag: 'footer',
+    content: '© ' + new Date().getFullYear()
+}
 
 posthtml()
     .use(function(tree) {

@@ -29,18 +29,19 @@
 
 ![Bikepolo в Москве](./bikepolo-insta-3.png)
 
-Было круто
-
-![Bikepolo в Москве](./bikepolo-insta-4.png)
-
 Участвовали в заезде Red Bull Fixed Gear
 
 ![Red Bull Fixed Gear Москва 1](./red-bull-fixed-gear-msk-1.png)
 ![Red Bull Fixed Gear Москва 2](./red-bull-fixed-gear-msk-2.png)
 
+Завершение дня
+
+![Bikepolo в Москве](./bikepolo-insta-4.png)
+
 ## Заметки о Байк-поло
 
 ### Площадка
+
 Борт высотой не меньше 100 см. Покрытие площадки ровное, твёрдое. Асфальт, бетон, чистая, без песка и др. мусора.
 Углы площадки должны быть скруглены, или должны быть не ровны 90 градусам.
 

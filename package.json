@@ -5,6 +5,7 @@
   "main": "index.html",
   "scripts": {
     "make": "yaspeller . &&./make.js",
+    "server": "http-server",
     "release": "npm run make && ./release",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
