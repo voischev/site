@@ -110,4 +110,3 @@
 ## Ссылки
 
 * [Правила лондонской ассоциации байк-поло](http://www.velo-kursk.ru/forum/viewtopic.php?f=53&t=3989)
-* [Правила лондонской ассоциации байк-поло (Оригинал)](http://www.lhbpa.org/resources/LHBPA_Bike_Polo_Rules.pdf)
