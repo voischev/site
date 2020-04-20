@@ -20,10 +20,6 @@ let doctype
 let head
 let metrika
 let nav
-let footer = {
-    tag: 'footer',
-    content: '© ' + new Date().getFullYear()
-}
 
 posthtml()
     .use(function(tree) {
@@ -138,7 +134,6 @@ const makePage = function(mdPath, cb) {
                                 ' последнее изменение',
                             ],
                         },
-                        footer,
                         metrika,
                     ),
                 },
@@ -216,7 +211,6 @@ const makeCatalog = function(options = {}) {
                                 }),
                             },
                         },
-                        footer,
                         metrika,
                     ),
                 },
