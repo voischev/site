@@ -4,39 +4,55 @@
 
 ![Bikepolo GIF](./bikepolo.gif)
 
-Мы участвовали на первом и втором турнире по байк-поло в Москве. И приняли участие в заезде Red Bull Fixed Gear
+В 2013 году мы с ребятами начали играть в байк-поло в Воронеже. Создали команду, смастерили велосипеды, научились играть.
 
-![Bikepolo Москва](./bike-polo-msk-2.jpg)
+![Bikepolo Воронеж](./bikepolo-vrn.jpg)
+![Bikepolo Воронеж. Первая команда](./bikepolo-vrn-komanda.jpg)
+![Bikepolo Воронеж. Первая команда](./bikepolo-vrn-komanda2.jpg)
 
-Нашу команду пригласили на чемпионат по Байк-поло. Старт из Воронежа
+Мы участвовали на первом и втором турнире по байк-поло в Москве.
+
+![Bikepolo Москва](./bikepolo-msk-2.jpg)
+
+Отчёт про [соревнования в Москве](http://velopolo.ru/соревнования-по-велополо-в-москве/).
+Нашу команду пригласили на чемпионат по байк-поло. Старт из Воронежа
 
 ![Как везли велосипеды 1](./bikepolo-auto-1.jpg)
 
-Приехали в Москву
+Приехали в Москву.
 
 ![Как везли велосипеды 2](./bikepolo-auto-2.jpg)
-![Как везли велосипеды 3](./bikepolo-auto-3.jpg)
 
-Первые места мы не занимали.
+В этот раз призовых мест мы не заняли. Да и призов не было.
+![Московский чемпионат по байк-поло](./bikepolo-msk-igra.jpg)
 
-![Bikepolo в Москве](./bikepolo-insta-1.png)
+Совместное фото со всеми участниками.
+![Московский чемпионат по байк-поло Финал](./bikepolo-msk-final.jpg)
 
-Сломанные велосипеды
+Участие в чемпионате по байк-поло от Bicycle Film Festival.
 
-![Bikepolo в Москве](./bikepolo-insta-2.png)
+Финальная игра. Наша команда в финале с командой из Курска.
+![Bicycle Film Festival Московский чемпионат по байк-поло Финальная игра](./bikepolo-msk2-igra1.jpg)
+![Bicycle Film Festival Московский чемпионат по байк-поло Финальная игра](./bikepolo-msk2-igra2.jpg)
 
-Сломанные тела
+В этот раз наша команда заняла второе место. Вручение призов и общее фото.
 
-![Bikepolo в Москве](./bikepolo-insta-3.png)
+![Bicycle Film Festival Московский чемпионат по байк-поло](./bikepolo-msk2-priz.jpg)
+![Bicycle Film Festival Московский чемпионат по байк-поло](./bikepolo-msk2-final.jpg)
 
-Участвовали в заезде Red Bull Fixed Gear
+Подробнее о чемпионате и больше фото по ссылкам:
+* [Байк-поло на Bicycle Film Festival. Впечатления организатора](http://velopolo.ru/впечатления-организатора/)
+* [Байк-поло на Bicycle Film Festival. Первый отчёт с московского турнира](http://velopolo.ru/первый-отчёт-с-московского-турнира/)
 
-![Red Bull Fixed Gear Москва 1](./red-bull-fixed-gear-msk-1.png)
-![Red Bull Fixed Gear Москва 2](./red-bull-fixed-gear-msk-2.png)
+До событий в Москве участвовали в нескольких Курских и [Воронежских соревнованиях](http://velopolo.ru/турнир-в-воронеже/).
 
-Завершение дня
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mOyk1vfkfA4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dSwZxYb9cmA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vIVZa6KzV-0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-![Bikepolo в Москве](./bikepolo-insta-4.png)
+Первый турнир по байк-поло в Воронеже. Совместное фото участников.
+![Воронежский чемпионат по Байк-поло Финал](./bikepolo-vrn-final.jpg)
+[Фото с первого турнира по байк-поло в Воронеже](https://vk.com/28septpolo?z=album-48520750_180460269)
 
 ## Заметки о Байк-поло
 
@@ -109,4 +125,6 @@
 
 ## Ссылки
 
-* [Правила лондонской ассоциации байк-поло](http://www.velo-kursk.ru/forum/viewtopic.php?f=53&t=3989)
+* [Правила игры](http://velopolo.ru/правила-игры/)
+* [VeloPolo.ru](https://vk.com/velopolo)
+* [Воронежская команда по велополо заняла второе место на Bicycle Film Festival в Москве](http://downtown.ru/voronezh/tastes/6829)
