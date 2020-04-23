@@ -158,10 +158,10 @@ CTRL+r+=512/2 Enter
 
 ## Ссылки
 
-* [https://danielmiessler.com/study/vim/](https://danielmiessler.com/study/vim/)
-* [https://github.com/mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles)
-* [https://github.com/mpyatishev](https://github.com/mpyatishev)
-* [https://github.com/mislav/vimfiles/blob/master/vimrc](https://github.com/mislav/vimfiles/blob/master/vimrc)
-* [https://github.com/gmarik/vimfiles](https://github.com/gmarik/vimfiles)
-* [https://github.com/swaroopch/dotvim/blob/master/vimrc](https://github.com/swaroopch/dotvim/blob/master/vimrc)
-* [https://github.com/madundead/stuff/blob/master/dotfiles/vim/vimrc.symlink](https://github.com/swaroopch/dotvim/blob/master/vimrc)
+* [https://danielmiessler.com/study/vim/](danielmiessler.com/study/vim/)
+* [https://github.com/mathiasbynens/dotfiles](mathiasbynens/dotfiles)
+* [https://github.com/mpyatishev](mpyatishev)
+* [https://github.com/mislav/vimfiles/blob/master/vimrc](mislav/vimfiles)
+* [https://github.com/gmarik/vimfiles](gmarik/vimfiles)
+* [https://github.com/swaroopch/dotvim/blob/master/vimrc](swaroopch/dotvim)
+* [https://github.com/madundead/stuff/blob/master/dotfiles/vim/vimrc.symlink](swaroopch/dotvim)
