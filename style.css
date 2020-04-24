@@ -28,6 +28,11 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.3;
 }
 
+main p, main li, main a {
+    font-family: Charter, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.0625em;
+}
+
 p, li, table {
     max-width: 600px;
     line-height: 1.7;
