@@ -32,6 +32,8 @@
         "dotfiles",
         "symlink",
         "vimrc",
+        "dotvim",
+        "vimfiles",
         "ПИФ",
         "ПИФы",
         "ETF",
@@ -39,6 +41,11 @@
         "ИИС",
         "Баффет",
         "Баффета",
+        "gmarik",
+        "mathiasbynens",
+        "mislav",
+        "mpyatishev",
+        "swaroopch",
         "RSS"
     ]
 }

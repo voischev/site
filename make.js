@@ -121,17 +121,22 @@ const makePage = function(mdPath, cb) {
                         nav,
                         {
                             tag: 'main',
-                            content: tree,
-                        },
-                        {
-                            tag: 'div',
                             content: [
                                 {
-                                    tag: 'time',
-                                    attrs: { datetime: isoDate },
-                                    content: isoDate.substring(0,10),
+                                    tag: 'article',
+                                    content: tree,
                                 },
-                                ' последнее изменение',
+                                {
+                                    tag: 'div',
+                                    content: [
+                                        {
+                                            tag: 'time',
+                                            attrs: { datetime: isoDate },
+                                            content: isoDate.substring(0,10),
+                                        },
+                                        ' последнее изменение',
+                                    ],
+                                },
                             ],
                         },
                         metrika,

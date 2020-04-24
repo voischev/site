@@ -158,10 +158,10 @@ CTRL+r+=512/2 Enter
 
 ## Ссылки
 
-* [https://danielmiessler.com/study/vim/](danielmiessler.com/study/vim/)
-* [https://github.com/mathiasbynens/dotfiles](mathiasbynens/dotfiles)
-* [https://github.com/mpyatishev](mpyatishev)
-* [https://github.com/mislav/vimfiles/blob/master/vimrc](mislav/vimfiles)
-* [https://github.com/gmarik/vimfiles](gmarik/vimfiles)
-* [https://github.com/swaroopch/dotvim/blob/master/vimrc](swaroopch/dotvim)
-* [https://github.com/madundead/stuff/blob/master/dotfiles/vim/vimrc.symlink](swaroopch/dotvim)
+* [danielmiessler.com/study/vim/](https://danielmiessler.com/study/vim/)
+* [mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles)
+* [mpyatishev](https://github.com/mpyatishev)
+* [mislav/vimfiles](https://github.com/mislav/vimfiles/blob/master/vimrc)
+* [gmarik/vimfiles](https://github.com/gmarik/vimfiles)
+* [swaroopch/dotvim](https://github.com/swaroopch/dotvim/blob/master/vimrc)
+* [swaroopch/dotvim](https://github.com/madundead/stuff/blob/master/dotfiles/vim/vimrc.symlink)

@@ -24,14 +24,17 @@
 ![Как везли велосипеды 2](./bikepolo-auto-2.jpg)
 
 В этот раз призовых мест мы не заняли. Да и призов не было.
+
 ![Московский чемпионат по байк-поло](./bikepolo-msk-igra.jpg)
 
 Совместное фото со всеми участниками.
+
 ![Московский чемпионат по байк-поло Финал](./bikepolo-msk-final.jpg)
 
 Участие в чемпионате по байк-поло от Bicycle Film Festival.
 
 Финальная игра. Наша команда в финале с командой из Курска.
+
 ![Bicycle Film Festival Московский чемпионат по байк-поло Финальная игра](./bikepolo-msk2-igra1.jpg)
 ![Bicycle Film Festival Московский чемпионат по байк-поло Финальная игра](./bikepolo-msk2-igra2.jpg)
 
@@ -51,6 +54,7 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vIVZa6KzV-0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Первый турнир по байк-поло в Воронеже. Совместное фото участников.
+
 ![Воронежский чемпионат по Байк-поло Финал](./bikepolo-vrn-final.jpg)
 [Фото с первого турнира по байк-поло в Воронеже](https://vk.com/28septpolo?z=album-48520750_180460269)
 
@@ -64,7 +68,6 @@
 Разметка. Нужно нанести разметку в центре поля и у ворот.
 
 Место штрафного. Обычно середина длинных бортов. Это место нужно как-то пометить.
-
 
 ![Заметки о Байк-поло](./bikepolo-bort-1.jpg)
 ![Заметки о Байк-поло](./bikepolo-bort-2.jpg)
