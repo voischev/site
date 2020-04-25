@@ -20,6 +20,10 @@ nav a {
     font-weight: bold;
 }
 
+nav a:first-child {
+    text-decoration: none;
+}
+
 footer {
     padding: 40px 0;
 }
@@ -28,7 +32,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.3;
 }
 
-main p, main li, main a {
+article p, article li, article a {
     font-family: Charter, Georgia, "Times New Roman", Times, serif;
     font-size: 1.0625em;
 }
