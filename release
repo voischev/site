@@ -19,6 +19,7 @@ files=(
     "./yandex_399494b1911614a5.html"
     "./t/index.html"
     "./invest/index.html"
+    "./knigi/index.html"
     )
 for file in ${files[@]}
 do
@@ -28,7 +29,7 @@ do
     fi
 done
 
-for file in ./{t,invest}/*/*
+for file in ./{t,invest,knigi}/*/*
 do
     if [[ -f "$file" ]] && [[ $file != *.md ]] && [[ $file != *.release ]]
     then
@@ -46,7 +47,7 @@ do
     fi
 done
 
-for file in ./{t,invest}/*/*
+for file in ./{t,invest,knigi}/*/*
 do
     if [[ -f "$file" ]] && [[ $file == *.release ]]
     then

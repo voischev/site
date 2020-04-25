@@ -239,5 +239,12 @@ makeCatalog({
     dir: './invest'
 })
 
+makeCatalog({
+    title: 'Книги',
+    description: 'Заметки из книг',
+    dir: './knigi'
+})
+
+
 console.log('Завершено')
 
