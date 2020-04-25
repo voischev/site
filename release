@@ -24,7 +24,7 @@ for file in ${files[@]}
 do
     if [[ -f "$file" ]]
     then
-        cp $file "$file".release
+        cp "$file" "$file".release
     fi
 done
 
@@ -32,7 +32,7 @@ for file in ./{t,invest}/*/*
 do
     if [[ -f "$file" ]] && [[ $file != *.md ]] && [[ $file != *.release ]]
     then
-        cp $file "$file".release
+        cp "$file" "$file".release
     fi
 done
 
