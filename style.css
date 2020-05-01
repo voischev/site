@@ -46,6 +46,10 @@ p img, iframe {
     width: 100%;
 }
 
+p img[src$="png"] {
+    background: white;
+}
+
 ul {
     list-style-type: square
 }
