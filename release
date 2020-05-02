@@ -37,6 +37,26 @@ do
     fi
 done
 
+# Создаем Sitemap
+touch sitemap.txt.release
+echo "https://voischev.ru/" > sitemap.txt.release
+
+for dir in ./{t,invest,knigi}
+do
+    if [[ -d "$dir" ]]
+    then
+        echo $(echo "$dir"/ | sed "s/^\./https:\/\/voischev.ru/") >> sitemap.txt.release
+    fi
+done
+
+for dir in ./{t,invest,knigi}/*
+do
+    if [[ -d "$dir" ]]
+    then
+        echo $(echo "$dir"/ | sed "s/^\./https:\/\/voischev.ru/") >> sitemap.txt.release
+    fi
+done
+
 git co -f master
 
 for file in ${files[@]}
