@@ -17,11 +17,20 @@ nav {
 }
 
 nav a {
-    font-weight: bold;
+    margin-right: 4px;
+    line-height: 33px;
+    vertical-align: top;
 }
 
 nav a:first-child {
-    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:first-child img {
+    width: 33px;
+    height: 33px;
+    margin-right: 4px;
+    border-radius: 50%;
 }
 
 footer {
