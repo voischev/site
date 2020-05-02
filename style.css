@@ -17,11 +17,22 @@ nav {
 }
 
 nav a {
-    font-weight: bold;
+    margin-right: 4px;
+    line-height: 34px;
+    vertical-align: top;
 }
 
 nav a:first-child {
-    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:first-child img {
+    display: none;
+    width: 33px;
+    height: 33px;
+    margin-right: 6px;
+    border-radius: 50%;
+    vertical-align: top;
 }
 
 footer {
@@ -99,6 +110,10 @@ pre code {
 @media (min-width: 1000px) {
     body {
         margin: 0 200px;
+    }
+
+    nav a:first-child img {
+        display: inline;
     }
 
     p img {
