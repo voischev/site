@@ -27,6 +27,7 @@ nav a:first-child {
 }
 
 nav a:first-child img {
+    display: none;
     width: 33px;
     height: 33px;
     margin-right: 6px;
@@ -109,6 +110,10 @@ pre code {
 @media (min-width: 1000px) {
     body {
         margin: 0 200px;
+    }
+
+    nav a:first-child img {
+        display: inline;
     }
 
     p img {
