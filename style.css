@@ -35,8 +35,12 @@ nav a:first-child img {
     vertical-align: top;
 }
 
-footer {
+form {
     padding: 40px 0;
+}
+
+input[name="email"] {
+    width: 150px;
 }
 
 h1, h2, h3, h4, h5, h6 {
