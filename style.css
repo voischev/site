@@ -1,6 +1,7 @@
 body {
     margin: 0 10px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
 }
 
 a {
@@ -45,11 +46,20 @@ input[name="email"] {
 
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.3;
+    font-weight: 500;
 }
 
-article p, article li, article a {
-    font-family: Charter, Georgia, "Times New Roman", Times, serif;
-    font-size: 1.0625em;
+
+h1 {
+    font-size: 2.25em;
+}
+
+h2 {
+    font-size: 1.625em;
+}
+
+h3 {
+    font-size: 1.375em;
 }
 
 p, li, table {
@@ -69,21 +79,6 @@ ul {
     list-style-type: square
 }
 
-blockquote {
-    font-size: 18px;
-    position: relative;
-}
-
-blockquote:before {
-    content: '“';
-    font-size: 4rem;
-    left: -40px;
-    line-height: 1;
-    position: absolute;
-    top: -0.6rem;
-    opacity: .2;
-}
-
 table {
     max-width: 800px;
     width: 100%;
@@ -99,11 +94,20 @@ td {
     padding: 2px;
 }
 
+blockquote {
+    font-size: 1.125em;
+}
+
+blockquote, pre {
+    margin-left: 0;
+    padding-left: 38px;
+    border-left: 2px solid;
+}
+
 pre {
     max-width: 760px;
     white-space: pre-line;
-    margin: 2em 0 2em 40px;
-    position: relative;
+    margin: 2em 0;
     line-height: 1.7;
 }
 
