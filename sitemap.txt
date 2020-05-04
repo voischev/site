@@ -5,6 +5,7 @@ https://voischev.ru/knigi/
 https://voischev.ru/t/bash/
 https://voischev.ru/t/bikepolo/
 https://voischev.ru/t/markdown/
+https://voischev.ru/t/pomodoro/
 https://voischev.ru/t/vim/
 https://voischev.ru/invest/2018/
 https://voischev.ru/invest/2019/
