@@ -1,6 +1,7 @@
 body {
     margin: 0 10px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
 }
 
 a {
@@ -45,11 +46,6 @@ input[name="email"] {
 
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.3;
-}
-
-article p, article li, article a {
-    font-family: Georgia, "Times New Roman", Times, serif;
-    font-size: 1.0625em;
 }
 
 p, li, table {
