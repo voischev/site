@@ -79,21 +79,6 @@ ul {
     list-style-type: square
 }
 
-blockquote {
-    font-size: 18px;
-    position: relative;
-}
-
-blockquote:before {
-    content: '“';
-    font-size: 4rem;
-    left: -40px;
-    line-height: 1;
-    position: absolute;
-    top: -0.6rem;
-    opacity: .2;
-}
-
 table {
     max-width: 800px;
     width: 100%;
@@ -109,11 +94,20 @@ td {
     padding: 2px;
 }
 
+blockquote {
+    font-size: 1.125em;
+}
+
+blockquote, pre {
+    margin-left: 0;
+    padding-left: 38px;
+    border-left: 2px solid;
+}
+
 pre {
     max-width: 760px;
     white-space: pre-line;
-    margin: 2em 0 2em 40px;
-    position: relative;
+    margin: 2em 0;
     line-height: 1.7;
 }
 
