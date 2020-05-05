@@ -14,7 +14,7 @@ const {
 } = require('fs')
 const {
     dirname,
-} = require('path');
+} = require('path')
 
 let doctype
 let head
@@ -52,11 +52,21 @@ const makeHead = function(tree, options = {}) {
     const {
         title,
         description,
+        canonical,
+        page,
     } = options
 
     tree.walk.bind(head)(function(node) {
         if (title === undefined) {
-            throw new Error('Отсутствует заголовок: ' + mdPath)
+            throw new Error('Отсутствует заголовок: ' + page)
+        }
+
+        if (description === undefined) {
+            throw new Error('Отсутствует описание: ' + page)
+        }
+
+        if (canonical === undefined) {
+            throw new Error('Отсутствует каноническая ссылка: ' + page)
         }
 
         if (node.tag === 'title') {
@@ -65,6 +75,10 @@ const makeHead = function(tree, options = {}) {
 
         if (!node.attrs) {
             return node
+        }
+
+        if (node.attrs.rel === 'canonical') {
+            node.attrs.href = 'https://voischev.ru' + canonical
         }
 
         if (node.attrs.property === 'og:title' ||
@@ -86,6 +100,7 @@ const makePage = function(mdPath, cb) {
     const date = getDate(mdPath)
     const isoDate = date.toISOString()
     const html = marked(readFileSync(mdPath).toString())
+    const url = dirname(mdPath).substring(1) + '/'
 
     let title
     let description
@@ -110,7 +125,12 @@ const makePage = function(mdPath, cb) {
                 return node
             })
 
-            makeHead(tree, { title, description })
+            makeHead(tree, {
+                title,
+                description,
+                canonical: url,
+                page: mdPath,
+            })
 
             return [
                 doctype,
@@ -148,7 +168,7 @@ const makePage = function(mdPath, cb) {
         .html
 
     cb({
-        url: dirname(mdPath).substring(1) + '/',
+        url,
         title,
         description,
         page,
@@ -161,6 +181,7 @@ const makeCatalog = function(options = {}) {
         title,
         description,
         dir,
+        canonical,
     } = options
 
     const links = []
@@ -189,7 +210,12 @@ const makeCatalog = function(options = {}) {
     const result = posthtml()
         .use(function(tree) {
 
-            makeHead(tree, { title, description })
+            makeHead(tree, {
+                title,
+                description,
+                canonical,
+                page: dir,
+            })
 
             return [
                 doctype,
@@ -231,18 +257,21 @@ makeCatalog({
     title: 'Заметки',
     description: 'Все заметки',
     dir: './t',
+    canonical: '/t/',
 })
 
 makeCatalog({
     title: 'Инвестиции',
     description: 'Итоги инвестиций',
-    dir: './invest'
+    dir: './invest',
+    canonical: '/invest/',
 })
 
 makeCatalog({
     title: 'Книги',
     description: 'Заметки из книг',
-    dir: './knigi'
+    dir: './knigi',
+    canonical: '/knigi/',
 })
 
 
