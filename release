@@ -11,6 +11,7 @@ files=(
     "./LICENSE"
     "./README.md"
     "./avatar.jpg"
+    "./cover.jpg"
     "./humans.txt"
     "./robots.txt"
     "./sitemap.txt"

@@ -79,13 +79,11 @@ const makeHead = function(tree, options = {}) {
             node.attrs.href = 'https://voischev.ru' + canonical
         }
 
-        if (node.attrs.property === 'og:title' ||
-            node.attrs.property === 'twitter:title') {
+        if (node.attrs.property === 'twitter:title') {
             node.attrs.content = title
         }
 
         if (node.attrs.name === 'description' ||
-            node.attrs.property === 'og:description' ||
             node.attrs.property === 'twitter:description') {
             node.attrs.content = description
         }
