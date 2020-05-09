@@ -20,6 +20,12 @@ let doctype
 let head
 let nav
 
+const minihtml = function(tree) {
+    tree.match(/^\n(\s+)?$/, node => {
+        return ''
+    })
+}
+
 posthtml()
     .use(function(tree) {
         tree.match(/!doctype/, node => (doctype = node))
@@ -159,6 +165,7 @@ const makePage = function(mdPath, cb) {
                 },
             ]
         })
+        .use(minihtml)
         .process(html, { sync: true })
         .html
 
@@ -241,6 +248,7 @@ const makeCatalog = function(options = {}) {
                 },
             ]
         })
+        .use(minihtml)
         .process([], { skipParse: true, sync: true })
         .html
 
