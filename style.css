@@ -106,13 +106,10 @@ blockquote, pre {
 
 pre {
     max-width: 760px;
+    overflow-wrap: break-word;
     white-space: pre-line;
     margin: 2em 0;
     line-height: 1.7;
-}
-
-pre code {
-    overflow-x: auto;
 }
 
 @media (min-width: 1000px) {
