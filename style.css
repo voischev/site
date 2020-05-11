@@ -7,7 +7,6 @@ body {
 a {
     color: blue;
     text-decoration: none;
-    display: inline-block;
 }
 
 a:hover {
@@ -19,7 +18,7 @@ nav {
 }
 
 nav a {
-    margin-right: 8px;
+    margin-right: 4px;
     line-height: 34px;
     vertical-align: top;
 }
