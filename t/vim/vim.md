@@ -176,4 +176,4 @@ CTRL+r+=512/2 Enter
 * [mislav/vimfiles](https://github.com/mislav/vimfiles/blob/master/vimrc)
 * [gmarik/vimfiles](https://github.com/gmarik/vimfiles)
 * [swaroopch/dotvim](https://github.com/swaroopch/dotvim/blob/master/vimrc)
-* [swaroopch/dotvim](https://github.com/madundead/stuff/blob/master/dotfiles/vim/vimrc.symlink)
+* [madundead/stuff/dotfiles](https://github.com/madundead/stuff/blob/master/dotfiles/vim/vimrc.symlink)
