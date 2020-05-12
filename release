@@ -58,6 +58,14 @@ do
     fi
 done
 
+for file in ./{t,invest,knigi}/*/*
+do
+    if [[ -f "$file" ]] && [[ $file == *.pdf ]]
+    then
+        echo $(echo "$file" | sed "s/^\./https:\/\/voischev.ru/") >> sitemap.txt.release
+    fi
+done
+
 git co -f master
 
 for file in ${files[@]}
