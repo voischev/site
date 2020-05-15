@@ -33,7 +33,7 @@ nnoremap <Leader>f :set nomore<Bar>:ls<Bar>:set more<CR>:b<Space>
 
 ## Git
 
-Git Blame для выделенной, в VISUAL MODE, части текста
+Вызвать git-blame для выделенной, в VISUAL MODE, части текста
 
 ```
 vnoremap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
