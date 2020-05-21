@@ -186,6 +186,10 @@ const makeCatalog = function(options = {}) {
         canonical,
     } = options
 
+    const sortFn = options.sortFn || function (a, b) {
+        return b.date - a.date
+    }
+
     const links = []
     const files = getFiles(dir, [], /\.md$/)
 
@@ -230,7 +234,7 @@ const makeCatalog = function(options = {}) {
                             tag: 'main',
                             content: {
                                 tag: 'ul',
-                                content: links.sort((a, b,) => (b.date - a.date)).map(function(item) {
+                                content: links.sort(sortFn).map(function(item) {
                                     return {
                                         tag: 'li',
                                         content: {
@@ -267,6 +271,9 @@ makeCatalog({
     description: 'Итоги инвестиций',
     dir: './invest',
     canonical: '/invest/',
+    sortFn: function(a, b) {
+        return +b.url.match(/\d+/) - +a.url.match(/\d+/)
+    },
 })
 
 makeCatalog({
