@@ -28,6 +28,7 @@
   "homepage": "https://github.com/voischev/voischev.github.io#readme",
   "dependencies": {
     "marked": "^0.8.0",
-    "posthtml": "^0.12.0"
+    "posthtml": "^0.12.0",
+    "posthtml-toc": "^1.0.3"
   }
 }

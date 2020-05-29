@@ -5,6 +5,7 @@ const {
 } = require('child_process')
 
 const posthtml = require('posthtml')
+const toc = require('posthtml-toc')
 const marked = require('marked')
 const {
     readdirSync,
@@ -165,6 +166,9 @@ const makePage = function(mdPath, cb) {
                 },
             ]
         })
+        .use(toc({
+            title: 'Содержание',
+        }))
         .use(minihtml)
         .process(html, { sync: true })
         .html
