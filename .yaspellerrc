@@ -28,6 +28,7 @@
         "(G|g)ithub",
         "CLI",
         "(M|m)arkdown",
+        "(T|t)ype(S|s)cript",
         "(Т|т)виттер[е]?",
         "dotfiles",
         "symlink",

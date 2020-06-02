@@ -103,6 +103,30 @@ autocmd BufEnter * lcd %:p:h
 :cw
 ```
 
+## Go to Definition
+
+Перейти к определению.
+
+`gd` — перейти к определению в файле
+
+Пользуюсь `ctags` с [настройками](https://github.com/voischev/dotfiles/blob/master/ctags) для `typescript`.
+Тут можно подсмотреть настройки для [TypeScript](https://github.com/jb55/typescript-ctags) и [JavaScript](https://github.com/romainl/ctags-patterns-for-javascript).
+
+В проекте строим файл `tags`.
+
+```
+ctags -R .
+```
+
+После чего можно будет использовать команды:
+
+* `CTRL+]` — Перейти к определению
+* `CTRL+t` — Вернуться обратно к месту вызова
+* `g+CTRL+]` — Список определений
+* `:tag React+TAB` — Круговой поиск определений начинающихся с `React`
+* `:tag React+CTRL+d` Полный список определений начинающихся с `React`
+
+
 ## Текст
 
 Записать выделенный текст в файл
