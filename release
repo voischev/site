@@ -17,6 +17,7 @@ files=(
     "./sitemap.txt"
     "./style.css"
     "./index.html"
+    "./404.html"
     "./yandex_399494b1911614a5.html"
     "./t/index.html"
     "./invest/index.html"
