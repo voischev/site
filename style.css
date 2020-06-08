@@ -36,10 +36,6 @@ nav a:first-child img {
     vertical-align: top;
 }
 
-form {
-    padding: 40px 0;
-}
-
 input[name="email"] {
     width: 150px;
 }
