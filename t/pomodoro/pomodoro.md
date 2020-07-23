@@ -72,6 +72,7 @@
 * [Книга про технику Pomodoro](pomodoro.pdf). Прочитать можно всего за 4 помидорки.
 * [Притча о том, как техника Pomodoro спасла заядлого трудоголика](https://habr.com/ru/company/smartprogress/blog/295274/)
 * [Всё, что вам нужно знать о технике Pomodoro](https://lifehacker.ru/2015/05/28/all-about-pomodoro/)
+* [Pomo Timer. Лучшее приложение на мой выбор](https://pomodoro.maxgribov.pro)
 * [Tomighty. Самый простое и бесплатное приложение](https://tomighty.github.io)
 * [FocusList. Pomodoro с списком задач](http://focuslist.co)
 * [Tomato One. Приложение под Mac OS](https://itunes.apple.com/us/app/tomato-one-free-focus-timer/id907364780)
