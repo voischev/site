@@ -10,4 +10,5 @@
 ```
 
 ## Ссылки
-* https://web.dev/fast/
+* [Fast load times](https://web.dev/fast/)
+* [Front-End Performance Checklist 2020](https://smashingmagazine.com/2020/01/front-end-performance-checklist-2020-pdf-pages/)
