@@ -1,4 +1,10 @@
 #!/bin/bash
+git add .
+
+git ci
+
+git push origin dev
+
 files=(
     "./android-chrome-192x192.png"
     "./android-chrome-512x512.png"
