@@ -110,6 +110,33 @@ CTRL-w+f
 :grep PATERN [PATH] | :copen
 ```
 
+Поиск только в открытых буферах
+
+```
+:bufdo vim PATREN ## | :copen
+
+```
+
+Выделить несколько буферов для поиска
+
+```
+:args `git diff --name-only`
+:bufdo vim PATREN ## | :copen
+```
+
+Без вывода предупреждений
+```
+:noautocmd bufdo vimgrepadd /debugger/j %
+```
+
+Поместить в список аргументов файлы из буфера
+```
+:argdelete ##
+:bufdo argadd %
+
+:bufdo vim PATREN ## | :copen
+```
+
 Открыть список с результатами поиска по файлам
 
 ```
