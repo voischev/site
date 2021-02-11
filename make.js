@@ -141,6 +141,7 @@ const makePage = function(mdPath, cb) {
                 {
                     tag: 'body',
                     content: [].concat(
+                        '<div id="yandex_rtb_R-A-732140-2"></div>',
                         nav,
                         {
                             tag: 'main',
@@ -233,6 +234,7 @@ const makeCatalog = function(options = {}) {
                 {
                     tag: 'body',
                     content: [].concat(
+                        '<div id="yandex_rtb_R-A-732140-2"></div>',
                         nav,
                         {
                             tag: 'main',
