@@ -87,7 +87,7 @@ th {
 }
 
 td {
-    padding: 2px;
+    padding: 1px;
 }
 
 blockquote {
@@ -106,6 +106,10 @@ pre {
     white-space: pre-line;
     margin: 2em 0;
     line-height: 1.7;
+}
+
+#yandex_rtb_R-A-732140-2 {
+    height: 90px;
 }
 
 @media (min-width: 1000px) {
@@ -143,8 +147,4 @@ pre {
 
 code {
     font-family: Monaco, Courier, monospace;
-}
-
-#yandex_rtb_R-A-732140-2 {
-    height: 90px;
 }
