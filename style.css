@@ -103,9 +103,9 @@ blockquote, pre {
 pre {
     max-width: 760px;
     overflow-wrap: break-word;
-    white-space: pre-line;
     margin: 2em 0;
     line-height: 1.7;
+    overflow: auto;
 }
 
 #yandex_rtb_R-A-732140-2 {
