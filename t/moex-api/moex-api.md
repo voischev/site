@@ -37,9 +37,9 @@ moexTickerLast('GAZP').then(console.log); // 150.25
 
 ## Параметры
 
-`?iss.meta=off` — отключает мета-данные в результате ответа.
-`?sort_order=desc` — вариант сортировки
-`?iss.only=history&history.columns=TRADEDATE,CLOSE,YIELD` — выбор нужных таблиц и колонок
+* `?iss.meta=off` — отключает мета-данные в результате ответа
+* `?sort_order=desc` — вариант сортировки
+* `?iss.only=history&history.columns=TRADEDATE,CLOSE,YIELD` — выбор нужных таблиц и колонок
 
 ## Ссылки
 

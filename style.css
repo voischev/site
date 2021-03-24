@@ -148,4 +148,5 @@ blockquote, pre {
 
 code {
     font-family: Monaco, Courier, monospace;
+    font-size: 0.75em;
 }
