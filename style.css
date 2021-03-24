@@ -91,12 +91,8 @@ td {
 }
 
 blockquote {
-    font-size: 1.125em;
-}
-
-blockquote, pre {
     margin-left: 0;
-    padding-left: 38px;
+    font-size: 1.125em;
     border-left: 2px solid;
 }
 
@@ -106,6 +102,11 @@ pre {
     margin: 2em 0;
     line-height: 1.7;
     overflow: auto;
+    border: 1px dashed;
+}
+
+blockquote, pre {
+    padding-left: 38px;
 }
 
 #yandex_rtb_R-A-732140-2 {
