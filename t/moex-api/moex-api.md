@@ -2,7 +2,7 @@
 
 Примеры работы с курсами валют и акций с помощью API Московской Биржи на JavaScript.
 
-## Как получить данные курса валют Центрального Банка
+## Получить данные курса валют Центрального Банка
 
 ```
 fetch('https://iss.moex.com/iss/statistics/engines/currency/markets/selt/rates.json?iss.meta=off')
@@ -34,6 +34,19 @@ async function moexTickerLast(ticker) {
 
 moexTickerLast('GAZP').then(console.log); // 150.25
 ```
+
+## Получить курс акции по тикеру в Excel и Google Docs
+
+Открываем редактор скриптов из меню: `Инструменты` > `Редактор скриптов`. Создаём новую функцию.
+
+```
+function moexTickerLast(ticker) {
+    var json = UrlFetchApp.fetch('https://iss.moex.com/iss/engines/stock/markets/shares/securities/' + ticker + '.json');
+    return JSON.parse(json).marketdata.data.filter(function(d) { return ['TQBR', 'TQTF'].indexOf(d[1]) !== -1; })[0][12];
+}
+```
+
+Далее используется как обычная формула: `=moexTickerLast("GAZP")`.
 
 ## Параметры
 
