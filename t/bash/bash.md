@@ -25,6 +25,12 @@ openssl rand -base64 6
 openssl rand -hex 4
 date | md5 | head -c8; echo
 ```
+### Поиск в gzip файлах
+
+```
+find features -name "chrome-*" | xargs zgrep "yastatic.net\/" -rl
+```
+
 
 ## Ссылки
 
