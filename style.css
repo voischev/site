@@ -35,6 +35,30 @@ nav a:first-child img {
     display: none;
 }
 
+nav a:last-child {
+    position: relative;
+}
+
+nav a:last-child:after {
+    position: absolute;
+    content: '•';
+    font-size: 31px;
+    color: red;
+    line-height: 1;
+    animation: live 4s ease-in-out infinite;
+}
+
+@keyframes live {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
 
 li a {
     font-weight: 500;
