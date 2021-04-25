@@ -28,11 +28,14 @@ nav a {
 
 nav a:first-child {
     position: relative;
-    color: blue;
+    font-size: 0;
 }
 
 nav a:first-child img {
-    display: none;
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    vertical-align: top;
 }
 
 nav a:last-child {
@@ -142,15 +145,16 @@ blockquote, pre {
         margin: 0 200px;
     }
 
+    nav a:first-child {
+        font-size: inherit;
+        color: blue;
+    }
+
     nav a:first-child img {
         display: block;
         position: absolute;
         top: -7px;
         left: -43px;
-        width: 33px;
-        height: 33px;
-        border-radius: 50%;
-        vertical-align: top;
     }
 
     p img {
