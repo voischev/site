@@ -48,30 +48,8 @@ done
 # Создаем Sitemap
 touch sitemap.txt.release
 echo "https://voischev.ru/" > sitemap.txt.release
-
-for dir in ./{t,invest,knigi}
-do
-    if [[ -d "$dir" ]]
-    then
-        echo $(echo "$dir"/ | sed "s/^\./https:\/\/voischev.ru/") >> sitemap.txt.release
-    fi
-done
-
-for dir in ./{t,invest,knigi}/*
-do
-    if [[ -d "$dir" ]]
-    then
-        echo $(echo "$dir"/ | sed "s/^\./https:\/\/voischev.ru/") >> sitemap.txt.release
-    fi
-done
-
-for file in ./{t,invest,knigi}/*/*
-do
-    if [[ -f "$file" ]] && [[ $file == *.pdf ]]
-    then
-        echo $(echo "$file" | sed "s/^\./https:\/\/voischev.ru/") >> sitemap.txt.release
-    fi
-done
+find ./{t,invest,knigi} -type d | sed "s/^\./https:\/\/voischev.ru/" | sed "s/$/\//" >> sitemap.txt.release
+find ./{t,invest,knigi} -name "*.pdf" | sed "s/^./https:\/\/voischev.ru/" >> sitemap.txt.release
 
 git co -f master
 
