@@ -63,6 +63,11 @@ nav a:last-child:after {
   }
 }
 
+li {
+    padding-bottom: 8px;
+    line-height: 1.4;
+}
+
 li a {
     font-weight: 500;
     border: 0;
@@ -91,8 +96,12 @@ h3 {
 
 p, li, table {
     max-width: 600px;
+}
+
+p, table {
     line-height: 1.7;
 }
+
 
 p img, iframe {
     width: 100%;
