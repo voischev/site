@@ -31,6 +31,12 @@ date | md5 | head -c8; echo
 find features -name "chrome-*" | xargs zgrep "yastatic.net\/" -rl
 ```
 
+### Вывести имя текущей ветки git
+
+```
+git branch | grep '\*' | sed -E 's/[* ]+//g'
+```
+
 
 ## Ссылки
 
