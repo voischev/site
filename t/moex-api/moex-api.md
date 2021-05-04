@@ -14,7 +14,7 @@ fetch('https://iss.moex.com/iss/statistics/engines/currency/markets/selt/rates.j
 })
 .then((json) => {
     // Текущий курс доллара ЦБРФ
-    console.log(json.cbrf.data[json.cbrf.columns.indexOf('CBRF_USD_LAST')]);
+    console.log(json.cbrf.data[0][json.cbrf.columns.indexOf('CBRF_USD_LAST')]);
 })
 .catch((error) => {
     console.error(error);
