@@ -123,7 +123,8 @@ table {
 th {
     text-align: left;
     border-bottom: 1px solid black;
-    /* border-bottom: 1px solid ivory; */
+    font-weight: 400;
+    font-style: italic;
 }
 
 td {
