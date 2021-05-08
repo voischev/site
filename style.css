@@ -42,15 +42,6 @@ nav a:last-child {
     position: relative;
 }
 
-nav a:last-child:after {
-    position: absolute;
-    content: '•';
-    font-size: 31px;
-    color: red;
-    line-height: 1;
-    animation: live 4s ease-in-out infinite;
-}
-
 @keyframes live {
   0% {
     opacity: 1;
