@@ -18,7 +18,7 @@ const {
 } = require('path')
 
 let doctype
-let head
+let headOrig
 let nav
 
 const minihtml = function(tree) {
@@ -30,7 +30,7 @@ const minihtml = function(tree) {
 posthtml()
     .use(function(tree) {
         tree.match(/!doctype/, node => (doctype = node))
-        tree.match({ tag: 'head' }, node => (head = node))
+        tree.match({ tag: 'head' }, node => (headOrig = node))
         tree.match({ tag: 'nav' }, node => (nav = node))
     })
     .process(readFileSync('./index.html').toString(), { sync: true })
@@ -48,18 +48,28 @@ const getFiles = function(dir, result = [], RE) {
     return result
 }
 
-const getDate = function(file) {
-    const time = execSync('git log --format="%at" -n 1 ' + file).toString().replace('\n', '')
-    return time.length ? new Date(parseInt(time) * 1000) : new Date()
+const getTime = function(file) {
+    const time = execSync(`git log --format=%at -n 1 ${file}`).toString().replace('\n', '')
+    const timeStart = execSync(`git log --reverse --format=%at ${file}|head -1`).toString().replace('\n', '')
+    const now = time.length ? new Date(parseInt(time) * 1000) : new Date()
+    const start = timeStart.length ? new Date(parseInt(timeStart) * 1000) : new Date()
+    return [start, now]
 }
 
 const makeHead = function(tree, options = {}) {
+
+    const head = Object.assign({}, headOrig)
+
     const {
         title,
         description,
         canonical,
         page,
+        modifiedTime,
+        publishedTime
     } = options
+
+    const url = 'https://voischev.ru' + canonical
 
     tree.walk.bind(head)(function(node) {
         if (title === undefined) {
@@ -83,7 +93,7 @@ const makeHead = function(tree, options = {}) {
         }
 
         if (node.attrs.rel === 'canonical') {
-            node.attrs.href = 'https://voischev.ru' + canonical
+            node.attrs.href = url
         }
 
         if (node.attrs.property === 'twitter:title') {
@@ -97,11 +107,28 @@ const makeHead = function(tree, options = {}) {
 
         return node
     })
+
+    if (!modifiedTime && !publishedTime) {
+        return head
+    }
+
+    head.content = head.content.concat([
+        { tag: 'meta', attrs: { property: 'og:type', content: 'article' }},
+        { tag: 'meta', attrs: { property: 'og:title', content: title }},
+        { tag: 'meta', attrs: { property: 'og:description', content: description }},
+        { tag: 'meta', attrs: { property: 'og:url', content: url }},
+        { tag: 'meta', attrs: { property: 'article:autor', content: 'Иван Воищев' }},
+        { tag: 'meta', attrs: { property: 'article:modified_time', content: modifiedTime }},
+        { tag: 'meta', attrs: { property: 'article:published_time', content: publishedTime }},
+    ])
+
+    return head
 }
 
 const makePage = function(mdPath, cb) {
-    const date = getDate(mdPath)
-    const isoDate = date.toISOString()
+    const [startTime, time]  = getTime(mdPath)
+    const modifiedTime = startTime.toISOString()
+    const publishedTime = time.toISOString()
     const html = marked(readFileSync(mdPath).toString())
     const url = dirname(mdPath).substring(1) + '/'
 
@@ -128,41 +155,38 @@ const makePage = function(mdPath, cb) {
                 return node
             })
 
-            makeHead(tree, {
+            const head = makeHead(tree, {
                 title,
                 description,
                 canonical: url,
                 page: mdPath,
+                modifiedTime,
+                publishedTime,
             })
 
             return [
                 doctype,
-                head,
                 {
-                    tag: 'body',
-                    content: [].concat(
-                        nav,
+                    tag: 'html',
+                    attrs: { prefix: 'og:http://ogp.me/ns# article:http://ogp.me/ns/article#' },
+                    content: [
+                        head,
                         {
-                            tag: 'main',
-                            content: [
+                            tag: 'body',
+                            content: [].concat(
+                                nav,
                                 {
-                                    tag: 'article',
-                                    content: tree,
-                                },
-                                {
-                                    tag: 'div',
+                                    tag: 'main',
                                     content: [
                                         {
-                                            tag: 'time',
-                                            attrs: { datetime: isoDate },
-                                            content: isoDate.substring(0,10),
+                                            tag: 'article',
+                                            content: tree,
                                         },
-                                        ' последнее изменение',
                                     ],
                                 },
-                            ],
+                            ),
                         },
-                    ),
+                    ],
                 },
             ]
         })
@@ -178,7 +202,7 @@ const makePage = function(mdPath, cb) {
         title,
         description,
         page,
-        date,
+        time,
     })
 }
 
@@ -204,7 +228,7 @@ const makeCatalog = function(options = {}) {
                 url,
                 title,
                 page,
-                date,
+                time,
             } = data
 
             writeFileSync('.' + url + 'index.html', page)
@@ -212,7 +236,7 @@ const makeCatalog = function(options = {}) {
             links.push({
                 url,
                 title,
-                date,
+                time,
             })
         })
     }
@@ -220,7 +244,7 @@ const makeCatalog = function(options = {}) {
     const result = posthtml()
         .use(function(tree) {
 
-            makeHead(tree, {
+            const head = makeHead(tree, {
                 title,
                 description,
                 canonical,
