@@ -127,8 +127,8 @@ const makeHead = function(tree, options = {}) {
 
 const makePage = function(mdPath, cb) {
     const [startTime, time]  = getTime(mdPath)
-    const modifiedTime = startTime.toISOString()
-    const publishedTime = time.toISOString()
+    const publishedTime = startTime.toISOString()
+    const modifiedTime = time.toISOString()
     const html = marked(readFileSync(mdPath).toString())
     const url = dirname(mdPath).substring(1) + '/'
 
