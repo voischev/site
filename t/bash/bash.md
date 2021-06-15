@@ -37,6 +37,17 @@ find features -name "chrome-*" | xargs zgrep "yastatic.net\/" -rl
 git branch | grep '\*' | sed -E 's/[* ]+//g'
 ```
 
+### Время последнего коммита в git
+
+```
+git log --format=%aI -n 1 [PATH]
+```
+
+### Время первого коммита в git
+
+```
+git log --reverse --pretty=format:%aI PATH | head -1
+```
 
 ## Ссылки
 

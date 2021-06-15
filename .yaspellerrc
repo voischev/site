@@ -33,6 +33,7 @@
         "(T|t)ype(S|s)cript",
         "(Т|т)виттер[е]?",
         "dotfiles",
+        "коммит[а]?",
         "symlink",
         "vimrc",
         "dotvim",
