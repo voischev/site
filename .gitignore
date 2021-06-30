@@ -1,4 +1,5 @@
 node_modules
-sitemap.txt
-*/*/*.html
-*/*.html
+build
+src/sitemap.txt
+src/*/*/*.html
+src/*/*.html

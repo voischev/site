@@ -1,6 +1,4 @@
 User-agent: *
 Disallow: /CNAME
-Disallow: /LICENSE
-Disallow: /README.md
 Disallow: /yandex_399494b1911614a5.html
 Sitemap: https://voischev.ru/sitemap.txt

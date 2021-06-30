@@ -33,7 +33,7 @@ posthtml()
         tree.match({ tag: 'head' }, node => (headOrig = node))
         tree.match({ tag: 'nav' }, node => (nav = node))
     })
-    .process(readFileSync('./index.html').toString(), { sync: true })
+    .process(readFileSync('./src/index.html').toString(), { sync: true })
 
 const getFiles = function(dir, result = [], RE) {
     const files = readdirSync(dir)
@@ -130,7 +130,8 @@ const makePage = function(mdPath, cb) {
     const publishedTime = startTime.toISOString()
     const modifiedTime = time.toISOString()
     const html = marked(readFileSync(mdPath).toString())
-    const url = dirname(mdPath).substring(1) + '/'
+    const dir = dirname(mdPath) + '/'
+    const url = dir.replace(/\.\/src/, '')
 
     let title
     let description
@@ -203,6 +204,7 @@ const makePage = function(mdPath, cb) {
         description,
         page,
         time,
+        dir,
     })
 }
 
@@ -229,9 +231,10 @@ const makeCatalog = function(options = {}) {
                 title,
                 page,
                 time,
+                dir,
             } = data
 
-            writeFileSync('.' + url + 'index.html', page)
+            writeFileSync(dir + 'index.html', page)
 
             links.push({
                 url,
@@ -290,27 +293,19 @@ const makeCatalog = function(options = {}) {
 makeCatalog({
     title: 'Заметки',
     description: 'Все заметки',
-    dir: './t',
+    dir: './src/t',
     canonical: '/t/',
 })
 
 makeCatalog({
     title: 'Инвестиции',
     description: 'Итоги инвестиций',
-    dir: './invest',
+    dir: './src/invest',
     canonical: '/invest/',
     sortFn: function(a, b) {
         return +b.url.match(/\d+/) - +a.url.match(/\d+/)
     },
 })
-
-makeCatalog({
-    title: 'Книги',
-    description: 'Заметки из книг',
-    dir: './knigi',
-    canonical: '/knigi/',
-})
-
 
 console.log('Завершено')
 

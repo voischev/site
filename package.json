@@ -4,9 +4,9 @@
   "description": "Личный сайт",
   "main": "index.html",
   "scripts": {
-    "make": "yaspeller . &&./make.js",
-    "server": "http-server",
-    "release": "npm run make && ./release",
+    "make": "yaspeller ./src && ./make",
+    "publish": "./publish",
+    "server": "http-server build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
