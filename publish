@@ -20,4 +20,11 @@ find ./{t,invest} -name "*.pdf" | sed "s/^./https:\/\/voischev.ru/" >> $SITEMAP
 
 cd ..
 
-#rm -rf build
+tar -czf /tmp/voischev.ru.tar.gz build/
+rm -rf build
+
+scp /tmp/voischev.ru.tar.gz voischev@voischev:/tmp/
+
+ssh voischev bash -s < scripts/server_publish
+
+echo "Успешно"

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd /tmp
+
+tar -xzf voischev.ru.tar.gz
+
+sudo cp -r build /var/www/voischev.ru
+sudo chown -R www-data:www-data /var/www/voischev.ru

@@ -306,6 +306,3 @@ makeCatalog({
         return +b.url.match(/\d+/) - +a.url.match(/\d+/)
     },
 })
-
-console.log('Завершено')
-
