@@ -1,5 +1,0 @@
-Hello world!
-
-Author:	Ivan Voischev
-Mail:	voischev.ivan@ya.ru
-Twitter:	https://twitter.com/voischev

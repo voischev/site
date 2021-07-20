@@ -29,6 +29,7 @@
   "dependencies": {
     "marked": "^0.8.0",
     "posthtml": "^0.12.0",
-    "posthtml-toc": "^1.0.3"
+    "posthtml-toc": "^1.0.3",
+    "yaspeller": "^7.0.0"
   }
 }

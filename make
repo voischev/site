@@ -96,15 +96,6 @@ const makeHead = function(tree, options = {}) {
             node.attrs.href = url
         }
 
-        if (node.attrs.property === 'twitter:title') {
-            node.attrs.content = title
-        }
-
-        if (node.attrs.name === 'description' ||
-            node.attrs.property === 'twitter:description') {
-            node.attrs.content = description
-        }
-
         return node
     })
 
