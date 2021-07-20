@@ -31,5 +31,8 @@
     "posthtml": "^0.12.0",
     "posthtml-toc": "^1.0.3",
     "yaspeller": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.3.3"
   }
 }

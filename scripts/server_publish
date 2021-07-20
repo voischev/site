@@ -1,8 +1,10 @@
 #!/bin/bash
+set -euo pipefail
 
 cd /tmp
 
 tar -xzf voischev.ru.tar.gz
 
-sudo cp -r build /var/www/voischev.ru
+sudo rm -rf /var/www/voischev.ru
+sudo mv build /var/www/voischev.ru
 sudo chown -R www-data:www-data /var/www/voischev.ru

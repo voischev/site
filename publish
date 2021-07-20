@@ -9,22 +9,23 @@ cp -a src/. build
 find build -name "*.md" -delete
 find src/{t,invest} -name "*index.html" -delete
 
+echo "Создаём Sitemap"
 cd build
-
-# Создаем Sitemap
 SITEMAP=sitemap.txt
 touch $SITEMAP
 echo "https://voischev.ru/" > $SITEMAP
 find ./{t,invest} -type d | sed "s/^\./https:\/\/voischev.ru/" | sed "s/$/\//" >> $SITEMAP
 find ./{t,invest} -name "*.pdf" | sed "s/^./https:\/\/voischev.ru/" >> $SITEMAP
-
 cd ..
 
-tar -czf /tmp/voischev.ru.tar.gz build/
+echo "Создаём архив"
+tar -P -czf /tmp/voischev.ru.tar.gz build/
 rm -rf build
 
+echo "Отправка на сервер"
 scp /tmp/voischev.ru.tar.gz voischev@voischev:/tmp/
 
+echo "Публикация на сервере"
 ssh voischev bash -s < scripts/server_publish
 
 echo "Успешно"
