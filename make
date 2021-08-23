@@ -208,7 +208,7 @@ const makeCatalog = function(options = {}) {
     } = options
 
     const sortFn = options.sortFn || function (a, b) {
-        return b.date - a.date
+        return b.time - a.time
     }
 
     const links = []
