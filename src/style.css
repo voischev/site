@@ -68,6 +68,11 @@ li a:hover, nav a:hover {
     border-bottom: 1px solid;
 }
 
+aside a {
+    display: inline-block;
+    text-transform: lowercase;
+}
+
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.3;
     font-weight: 500;
