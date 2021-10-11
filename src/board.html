@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Stock Board</title>
+        <style>
+            body {
+                min-height: 100vh;
+                font-family: monospace;
+                white-space: pre;
+            }
+        </style>
+        <script>
+            function _getColumnData(table, column) {
+                const { columns, data } = table
+                return data.filter(function(d) { return ['TQBR', 'TQTF'].indexOf(d[1]) !== -1 })[0][columns.indexOf(column)]
+            }
+
+            async function stockData(ticker) {
+                const url = 'https://iss.moex.com/iss/engines/stock/markets/shares/securities/' + ticker + '.json?iss.meta=off'
+                const json = await fetch(url).then((res) => {return res.json()})
+
+                const price =_getColumnData(json.marketdata, 'LAST')
+                const decimals = _getColumnData(json.securities, 'DECIMALS')
+
+                return [
+                    price,
+                    decimals,
+                ]
+
+            }
+
+            async function makeData(line) {
+                    const [ticker, targetStr] = line.split(' ')
+                    const target = Number(targetStr)
+                    const [price, decimals] = await stockData(ticker)
+                    const delta = target - price
+                    const percent = delta / target * 100
+                    const fixed = decimals < 4 ? decimals : 4 // Точность больше не нужна
+
+                    return [
+                        ticker,
+                        (target).toFixed(fixed),
+                        (price).toFixed(fixed),
+                        (delta).toFixed(fixed),
+                        (percent).toFixed(1),
+                    ]
+            }
+
+            function readerRender(e) {
+                e.preventDefault()
+                const file = e.dataTransfer.files[0]
+                if (file.type !== 'text/plain') {
+                    document.body.innerHTML = 'Ожидается текстовый файл (text/plain). Пример содерждимого "TIKER 999"'
+                    return
+                }
+
+                const reader = new FileReader()
+
+                reader.onprogress = function() {
+                    document.body.innerHTML = 'Чтение файла ' + file.name
+                }
+
+                reader.onload = function() {
+                    const text = reader.result
+                    render(text)
+                }
+
+                reader.onerror = function() {
+                    document.body.innerHTML = 'Ошибка чтения файла ' + file.name
+                }
+
+                reader.readAsText(file)
+
+            }
+
+            function render(text) {
+                let count = 0
+                const rowData = text.split('\n')
+                document.body.innerHTML = 'Загрузка ' + count + '/' + rowData.length
+
+                Promise.all(rowData.map(line => makeData(line).then(lineData => {
+                    count = count + 1
+                    document.body.innerHTML = 'Загрузка ' + count + '/' + rowData.length
+                    return lineData
+                }))).then(data => {
+                    document.body.innerHTML = ''
+
+                    const header = ['ticker', 'target', 'price', 'delta', 'delta %']
+                    const headerResult = header.join('\t')
+                    document.body.append(document.createTextNode(headerResult + '\n'))
+                    document.body.append(document.createTextNode(Array(headerResult.replace(/\t/g, function(match, offset) { return Array(8-(offset%8)).join(' ') }).length).join('-') + '\n'))
+
+                    const sortData = data.sort((a, b) => (Number(b[4] - Number(a[4]))))
+                    const fragment = document.createDocumentFragment()
+                    sortData.forEach(line => fragment.append(document.createTextNode(line.join('\t') + '\n')))
+
+                    document.body.append(fragment)
+                })
+
+                window.localStorage.setItem('targets', text)
+            }
+
+            function main() {
+                const storageTargets = window.localStorage.getItem('targets')
+
+                if (storageTargets) render(storageTargets)
+                else document.body.innerHTML = 'Перетащи текстовый файл с таргетами'
+
+                document.addEventListener('dragover', e => {
+                    e.preventDefault()
+                    e.dataTransfer.dropEffect = 'move'
+                })
+
+                document.addEventListener('drop', readerRender, false)
+
+            }
+
+            document.addEventListener('DOMContentLoaded', main)
+        </script>
+    </head>
+</html>
