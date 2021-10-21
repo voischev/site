@@ -91,7 +91,7 @@
                     document.body.append(document.createTextNode(headerResult + '\n'))
                     document.body.append(document.createTextNode(Array(headerResult.replace(/\t/g, function(match, offset) { return Array(8-(offset%8)).join(' ') }).length).join('-') + '\n'))
 
-                    const sortData = data.sort((a, b) => (Number(b[4] - Number(a[4]))))
+                    const sortData = data.sort((a, b) => (Number(b[4]) - Number(a[4])))
                     const fragment = document.createDocumentFragment()
                     sortData.forEach(line => fragment.append(document.createTextNode(line.join('\t') + '\n')))
 
