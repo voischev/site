@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Generate Password</title>
+        <style>
+            body {
+                min-height: 100vh;
+                font-family: monospace;
+                white-space: pre;
+            }
+        </style>
+        <script>
+            function generatePassword(){
+                const length = 24
+                const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@#$-+'
+
+                return Array(length)
+                    .fill(charset)
+                    .map(x => x[Math.floor(crypto.getRandomValues(new Uint32Array(1))[0] / (0xffffffff + 1) * (x.length + 1))])
+                    .join('')
+            }
+
+            function main() {
+                document.body.innerHTML = generatePassword()
+            }
+
+            document.addEventListener('DOMContentLoaded', main)
+        </script>
+    </head>
+</html>
