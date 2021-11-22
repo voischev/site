@@ -35,7 +35,7 @@
                     const target = Number(targetStr)
                     const [price, decimals] = await stockData(ticker)
                     const delta = target - price
-                    const percent = delta / target * 100
+                    const percent = delta / price * 100 // Дельта в % от текущей цены
                     const fixed = decimals < 4 ? decimals : 4 // Точность больше не нужна
 
                     return [
