@@ -1,7 +1,11 @@
 {
     "excludeFiles": [
         "node_modules",
-        "src/yandex_399494b1911614a5.html"
+        "src/yandex_399494b1911614a5.html",
+        "src/t/index.html",
+        "src/t/*/index.html",
+        "src/invest/index.html",
+        "src/invest/*/index.html"
     ],
     "fileExtensions": [".md", ".html"],
     "format": "auto",
