@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Timer</title>
+        <script>
+            function notify(title) {
+                // https://developer.mozilla.org/ru/docs/Web/API/notification
+                if (Notification.permission === 'granted') {
+                    new Notification(title);
+                } else if (Notification.permission !== 'denied') {
+                    Notification.requestPermission(function (permission) {
+                        if (permission === 'granted') {
+                            Notification(title);
+                        }
+                    })
+                }
+            }
+
+            function random(min, max) {
+                const num = Math.floor(Math.random() * (max - min)) + min
+                return num
+            }
+
+            function timer(fn, finish, check) {
+                let seconds = 0
+                const SECOND = 1000
+
+                let timerID = setTimeout(function run() {
+
+                    seconds++
+
+                    check(seconds, timerID)
+
+                    if (seconds === finish) {
+                        fn()
+                        return
+                    }
+
+                    itmerID = setTimeout(run, SECOND)
+                }, SECOND)
+
+                return [seconds, timerID]
+            }
+
+            function main() {
+                const start = document.getElementById('start')
+
+                start.addEventListener('click', function() {
+
+                    start.disabled = true
+
+                    const time = 25 * 60
+                    const count = 0
+
+                    timer(
+                        function() {
+                            start.disabled = false
+                        },
+                        time,
+                        function(s) {
+                            if (s < time) {
+                                if (!((time - s + 1) % 60)) { // Каждые 60 секунд
+                                    const countdown = Math.floor((time - s) / 60)
+                                    start.innerText =  'Осталось ' + countdown
+                                }
+                            } else {
+                                start.innerText = 'Старт 25'
+                                notify('5 минут на отдых')
+                            }
+                        }
+                    )
+                })
+            }
+
+            document.addEventListener('DOMContentLoaded', main)
+        </script>
+    </head>
+    <body>
+        <button id="start">Старт 25</button>
+    </body>
+</html>
