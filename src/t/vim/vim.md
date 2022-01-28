@@ -40,6 +40,16 @@ nnoremap <Leader>f :set nomore<Bar>:ls<Bar>:set more<CR>:b<Space>
 vnoremap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 ```
 
+## Выполнить команду под курсором
+Мой пример вставляет строку под курсором в командную строку VIM.
+Выполнять нужно в командном режиме (command mode) `:`, добавляем `!` знак что бы последующая строка выполнилась в `shell`. Далее пара комбинаций — `CTRL+R` (вставить из регистра) и `CTRL+L` (line), или `CTRL-W` (word).
+
+```
+:! CTRL+R CTRL+L
+
+```
+[Подробнее про CTRL+R](http://vimdoc.sourceforge.net/htmldoc/insert.html#i_CTRL-R).
+
 ## Опции VIM
 
 При открытии файла установить курсор в последней позиции
