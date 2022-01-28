@@ -92,6 +92,10 @@ const makeHead = function(tree, options = {}) {
             return node
         }
 
+        if (node.tag === 'meta' && node.attrs.name === 'description') {
+            node.attrs.content = description
+        }
+
         if (node.attrs.rel === 'canonical') {
             node.attrs.href = url
         }
