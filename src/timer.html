@@ -4,6 +4,11 @@
         <meta charset="utf-8">
         <title>Timer</title>
         <script>
+            /*
+             * TODO:
+             * - service worker for offline
+             */
+
             function notify(title) {
                 // https://developer.mozilla.org/ru/docs/Web/API/notification
                 if (Notification.permission === 'granted') {
@@ -22,7 +27,7 @@
                 return num
             }
 
-            function timer(fn, finish, check) {
+            function timer(finish, fn, check) {
                 let seconds = 0
                 const SECOND = 1000
 
@@ -43,6 +48,13 @@
                 return [seconds, timerID]
             }
 
+            function render(data) {
+                const results = document.getElementById('results')
+                const fragment = document.createDocumentFragment()
+                data.split('\n').forEach(line => fragment.append(document.createTextNode(line + '\n')))
+                results.replaceChildren(fragment)
+            }
+
             function main() {
                 const start = document.getElementById('start')
 
@@ -54,19 +66,23 @@
                     const count = 0
 
                     timer(
+                        time,
                         function() {
                             start.disabled = false
+                            const timeEnd = Date.now()
+                            const timeStart = timeEnd - time
+                            const today = new Date().toISOString().slice(0, 10);
+                            let data = window.localStorage.getItem('timer') || ''
+                            data = `${today} ${timeStart} ${timeEnd}\n` + data
+                            window.localStorage.setItem('timer', data)
+                            start.innerText = 'Старт 25'
+                            notify('5 минут на отдых')
+                            render(data)
                         },
-                        time,
                         function(s) {
-                            if (s < time) {
-                                if (!((time - s + 1) % 60)) { // Каждые 60 секунд
-                                    const countdown = Math.floor((time - s) / 60)
-                                    start.innerText =  'Осталось ' + countdown
-                                }
-                            } else {
-                                start.innerText = 'Старт 25'
-                                notify('5 минут на отдых')
+                            if (!((time - s + 1) % 60)) { // Каждые 60 секунд
+                                const countdown = Math.floor((time - s) / 60)
+                                start.innerText =  'Осталось ' + countdown
                             }
                         }
                     )
@@ -78,5 +94,6 @@
     </head>
     <body>
         <button id="start">Старт 25</button>
+        <pre id="results"></pre>
     </body>
 </html>
