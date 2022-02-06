@@ -51,13 +51,46 @@
             function render(data) {
                 const results = document.getElementById('results')
                 const fragment = document.createDocumentFragment()
-                data.split('\n').forEach(line => fragment.append(document.createTextNode(line + '\n')))
+                const days = {}
+                data.split('\n').forEach(line => {
+                    if (!line) {
+                        return
+                    }
+                    const today = line.split(' ')[0]
+                    days[today] = days[today] ? (days[today] + 1) : 1
+                })
+
+                for (let day in days) {
+                    fragment.append(document.createTextNode(`${day} ${days[day]} ${new Array(days[day] + 1).join('🍅')}\n`))
+                }
+
                 results.replaceChildren(fragment)
             }
 
-            function main() {
-                const start = document.getElementById('start')
+            function getData() {
+                return window.localStorage.getItem('timer')
+            }
 
+            class Data {
+                constructor() {
+                    this.name = 'timer'
+                }
+                getItem() {
+                    return window.localStorage.getItem(this.name)
+                }
+                setItem(data) {
+                    window.localStorage.setItem(this.name, data)
+                }
+            }
+
+            function main() {
+                const db = new Data()
+                const data = db.getItem()
+                if (data) {
+                    render(data)
+                }
+
+                const start = document.getElementById('start')
                 start.addEventListener('click', function() {
 
                     start.disabled = true
@@ -72,9 +105,9 @@
                             const timeEnd = Date.now()
                             const timeStart = timeEnd - time
                             const today = new Date().toISOString().slice(0, 10);
-                            let data = window.localStorage.getItem('timer') || ''
+                            let data = db.getItem() || ''
                             data = `${today} ${timeStart} ${timeEnd}\n` + data
-                            window.localStorage.setItem('timer', data)
+                            db.setItem(data)
                             start.innerText = 'Старт 25'
                             notify('5 минут на отдых')
                             render(data)
