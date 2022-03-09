@@ -5,9 +5,12 @@
         <title>Timer</title>
         <script>
             /*
-             * TODO:
-             * - service worker for offline
-             */
+            TODO:
+            - service worker for offline
+            - ограничение в LS на 1 год
+            - аналитика на canvas
+            - недельный таргет
+            */
 
             function notify(title) {
                 // https://developer.mozilla.org/ru/docs/Web/API/notification
@@ -52,11 +55,15 @@
                 const results = document.getElementById('results')
                 const fragment = document.createDocumentFragment()
                 const days = {}
+                const week = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб']
+
                 data.split('\n').forEach(line => {
                     if (!line) {
                         return
                     }
-                    const today = line.split(' ')[0]
+                    const milliseconds = Number(line.split(' ')[0])
+                    const date = new Date(milliseconds)
+                    const today = date.toISOString().slice(0, 10) + ' ' + week[date.getDay()];
                     days[today] = days[today] ? (days[today] + 1) : 1
                 })
 
@@ -71,7 +78,7 @@
                 return window.localStorage.getItem('timer')
             }
 
-            class Data {
+            class DataBase {
                 constructor() {
                     this.name = 'timer'
                 }
@@ -84,8 +91,9 @@
             }
 
             function main() {
-                const db = new Data()
+                const db = new DataBase()
                 const data = db.getItem()
+
                 if (data) {
                     render(data)
                 }
@@ -104,9 +112,8 @@
                             start.disabled = false
                             const timeEnd = Date.now()
                             const timeStart = timeEnd - time
-                            const today = new Date().toISOString().slice(0, 10);
                             let data = db.getItem() || ''
-                            data = `${today} ${timeStart} ${timeEnd}\n` + data
+                            data = `${timeStart} ${timeEnd}\n` + data
                             db.setItem(data)
                             start.innerText = 'Старт 25'
                             notify('5 минут на отдых')
