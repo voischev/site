@@ -20,7 +20,7 @@
                 const url = 'https://iss.moex.com/iss/engines/stock/markets/shares/securities/' + ticker + '.json?iss.meta=off'
                 const json = await fetch(url).then((res) => {return res.json()})
 
-                const price =_getColumnData(json.marketdata, 'LAST')
+                const price = _getColumnData(json.marketdata, 'LAST') || _getColumnData(json.marketdata, 'MARKETPRICE')
                 const decimals = _getColumnData(json.securities, 'DECIMALS')
 
                 return [
