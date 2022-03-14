@@ -96,6 +96,11 @@ autocmd BufEnter * lcd %:p:h
 
 ## Работа с файлами
 
+Изменение текста между html/xml tags. Описание `:h it` или `:h tag-blocks`
+```
+cit
+```
+
 Открыть файл под курсором
 ```
 gf
