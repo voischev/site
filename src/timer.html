@@ -14,13 +14,19 @@
 
             function notify(title) {
                 // https://developer.mozilla.org/ru/docs/Web/API/notification
-                if (Notification.permission === 'granted') {
-                    new Notification(title);
-                } else if (Notification.permission !== 'denied') {
-                    Notification.requestPermission(function (permission) {
-                        if (permission === 'granted') {
-                            Notification(title);
+                const show = function() {
+                    const n = new Notification(title)
+                    document.addEventListener('visibilitychange', function handler() {
+                        if (document.visibilityState === 'visible') {
+                            n.close()
+                            document.removeEventListener('visibilitychange', handler)
                         }
+                    })
+                }
+                if (Notification.permission === 'granted') show()
+                else if (Notification.permission !== 'denied') {
+                    Notification.requestPermission(function(permission) {
+                        if (permission === 'granted') show()
                     })
                 }
             }
@@ -28,27 +34,6 @@
             function random(min, max) {
                 const num = Math.floor(Math.random() * (max - min)) + min
                 return num
-            }
-
-            function timer(finish, fn, check) {
-                let seconds = 0
-                const SECOND = 1000
-
-                let timerID = setTimeout(function run() {
-
-                    seconds++
-
-                    check(seconds, timerID)
-
-                    if (seconds === finish) {
-                        fn()
-                        return
-                    }
-
-                    itmerID = setTimeout(run, SECOND)
-                }, SECOND)
-
-                return [seconds, timerID]
             }
 
             function render(data) {
@@ -74,10 +59,6 @@
                 results.replaceChildren(fragment)
             }
 
-            function getData() {
-                return window.localStorage.getItem('timer')
-            }
-
             class DataBase {
                 constructor() {
                     this.name = 'timer'
@@ -91,6 +72,8 @@
             }
 
             function main() {
+                const timerWorker = new Worker('timer.js');
+
                 const db = new DataBase()
                 const data = db.getItem()
 
@@ -99,41 +82,38 @@
                 }
 
                 const start = document.getElementById('start')
-                start.addEventListener('click', function() {
-
+                start.onclick = function() {
                     start.disabled = true
 
-                    const time = 25 * 60
-                    const count = 0
+                    const minutes = 25
 
-                    timer(
-                        time,
-                        function() {
-                            start.disabled = false
-                            const timeEnd = Date.now()
-                            const timeStart = timeEnd - time
-                            let data = db.getItem() || ''
-                            data = `${timeStart} ${timeEnd}\n` + data
-                            db.setItem(data)
-                            start.innerText = 'Старт 25'
-                            notify('5 минут на отдых')
-                            render(data)
-                        },
-                        function(s) {
-                            if (!((time - s + 1) % 60)) { // Каждые 60 секунд
-                                const countdown = Math.floor((time - s) / 60)
-                                start.innerText =  'Осталось ' + countdown
-                            }
+                    timerWorker.postMessage(minutes)
+                    timerWorker.onmessage = function(event) {
+                        const minutes = event.data
+
+                        if (minutes) {
+                            document.title = minutes
+                            return
                         }
-                    )
-                })
+
+                        start.disabled = false
+                        const timeEnd = Date.now()
+                        const timeStart = timeEnd - minutes * 60
+                        let data = db.getItem() || ''
+                        data = `${timeStart} ${timeEnd}\n` + data
+                        db.setItem(data)
+                        notify('Закончилась помидорка')
+                        render(data)
+                        document.title = 'Timer'
+                    }
+                }
             }
 
             document.addEventListener('DOMContentLoaded', main)
         </script>
     </head>
     <body>
-        <button id="start">Старт 25</button>
+        <button id="start">Таймер</button>
         <pre id="results"></pre>
     </body>
 </html>
