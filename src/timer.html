@@ -59,6 +59,35 @@
                 results.replaceChildren(fragment)
             }
 
+            function display(count) {
+                if (count) document.title = 'Timer'
+                else document.title = count
+
+                const canvas = document.createElement('canvas')
+                canvas.height = canvas.width = 32
+
+                const ctx = canvas.getContext('2d')
+                ctx.font = '32px cursive'
+                ctx.fillStyle = '#f00'
+                ctx.beginPath()
+                ctx.arc(16, 16, 16, 0, 2 * Math.PI)
+                ctx.fill()
+                ctx.fillStyle = '#000'
+                ctx.textBaseline = 'center'
+                ctx.textAlign = 'center'
+                ctx.fillText(count, 16, 26, 32)
+
+                const o = document.querySelectorAll('link[rel="icon"]')
+                for (let i = 0; i < o.length; i++) {
+                    o[i].parentNode.removeChild(o[i])
+                }
+
+                const link = document.createElement('link')
+                link.setAttribute('rel', 'icon')
+                link.setAttribute('href', canvas.toDataURL())
+                document.querySelector('head').appendChild(link)
+            }
+
             class DataBase {
                 constructor() {
                     this.name = 'timer'
@@ -92,7 +121,7 @@
                         const minutes = event.data
 
                         if (minutes) {
-                            document.title = minutes
+                            display(minutes)
                             return
                         }
 
@@ -104,7 +133,7 @@
                         db.setItem(data)
                         notify('Закончилась помидорка')
                         render(data)
-                        document.title = 'Timer'
+                        display(minutes)
                     }
                 }
             }
