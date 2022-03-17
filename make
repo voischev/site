@@ -124,7 +124,7 @@ const makePage = function(mdPath, cb) {
     const [startTime, time]  = getTime(mdPath)
     const publishedTime = startTime.toISOString()
     const modifiedTime = time.toISOString()
-    const html = marked(readFileSync(mdPath).toString())
+    const html = marked.parse(readFileSync(mdPath).toString())
     const dir = dirname(mdPath) + '/'
     const url = dir.replace(/\.\/src/, '')
 
