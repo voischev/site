@@ -61,22 +61,21 @@
             }
 
             function display(count) {
-                if (count) document.title = 'Timer'
-                else document.title = count
 
                 const canvas = document.createElement('canvas')
                 canvas.height = canvas.width = 32
 
                 const ctx = canvas.getContext('2d')
-                ctx.font = '32px cursive'
-                ctx.fillStyle = '#f00'
+                ctx.fillStyle = '#ff6347'
                 ctx.beginPath()
                 ctx.arc(16, 16, 16, 0, 2 * Math.PI)
                 ctx.fill()
-                ctx.fillStyle = '#fff'
+                ctx.font = '32px cursive'
                 ctx.textBaseline = 'center'
                 ctx.textAlign = 'center'
-                ctx.fillText(count, 16, 26, 32)
+                ctx.fillStyle = count ? '#fff' : '#008000'
+                ctx.fillText(count || '*', 16, 26, 32)
+                document.title = count || 'Timer'
 
                 const o = document.querySelectorAll('link[rel="icon"]')
                 for (let i = 0; i < o.length; i++) {
