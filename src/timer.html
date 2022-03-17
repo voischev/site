@@ -16,7 +16,7 @@
             function notify(title) {
                 // https://developer.mozilla.org/ru/docs/Web/API/notification
                 const show = function() {
-                    const n = new Notification(title)
+                    const n = new Notification(title, { vibrate: [200, 100, 200] })
                     document.addEventListener('visibilitychange', function handler() {
                         if (document.visibilityState === 'visible') {
                             n.close()
