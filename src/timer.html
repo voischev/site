@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Timer</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script>
             /*
             TODO:
@@ -72,7 +73,7 @@
                 ctx.beginPath()
                 ctx.arc(16, 16, 16, 0, 2 * Math.PI)
                 ctx.fill()
-                ctx.fillStyle = '#000'
+                ctx.fillStyle = '#fff'
                 ctx.textBaseline = 'center'
                 ctx.textAlign = 'center'
                 ctx.fillText(count, 16, 26, 32)
@@ -122,10 +123,12 @@
 
                         if (minutes) {
                             display(minutes)
+                            start.innerText = minutes
                             return
                         }
 
                         start.disabled = false
+                        start.innerText = 'Таймер'
                         const timeEnd = Date.now()
                         const timeStart = timeEnd - minutes * 60
                         let data = db.getItem() || ''
