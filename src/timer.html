@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Timer</title>
-        <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAA3ZJREFUWEfFl19I01EUx7/3t82tOVOnWS4wp4UUqS9KBbUsEDV8NzAsdBRRQlJRFNJLT1EUaP9AfSgNpVcp7a8uQSmR1EoorFjlZKbTTc3Z3I3726Zzbvv9Nhfex9/v3HM+55x7zj2XQOSi5fkacJJiADpQmgkgBUCce/skACMIGQRggHOhlTQ8HxGjmggJUX3RblDnGQAlQrI+/1tAuFuk7mlPsH0BAWhenhTp8psATodo2Fe8FsP2KtLR4fCnxy8A1RdmgdIHALLFGJ8mC7in+oFzttRA4v0gpIzUtQ34CqwAoOWFe0FoK4BYMcbHuHmkaQxwgOLPz/xgW6ZASTFpaOvyFloG4PbcEMz4S8U4XssncHVqG6+nS27BvqS30DrW4atJx3+bI048UYyhU25BtTUNic4oj80pEKLzjsQigDvnvcHCfip+CHdURl7ZWVsqrk9m4JHShNKEAey3q9FhzsWgzIZDG/owKrGjfmInymY0vlHpx7A9x3MmlgAqCmqEDtx7mQ25m7r5cLN13qZFnFOKy7FfcHRGg5z5WFTGDyFlQYFn5hxkOKIDpaSW1LdXsp88gLvUusXkvC/Kil0bexYhfPeUzibznsspF1wd4fawEnUBVBQ0h1LnH2XTOJj0DmZufpmRh+OZODK7IuSBQFpIffthwnc4wv0S4723jJVzICW5E1PcUnlXW9NxwapFNJWIU0edmwnVFx4HpffF7XBJsVOuV39Ak9K0YpuCcrhkTUOVLRUqIRBCTjCARlBaKhbgs3QG+Um9MErmcNuyHawy2Mr8G8NXgGcxkCvWrbho1QZWTUgToRUF/QCyxAAwj48lDELtlOGFOQfrqRSpyQYwY6wJNSpHcFL9CawzMu/vTuwQOhMDDMDidasF5HisHEWNyoiiuURU2rbwBt7ILdD5NCFmvEVpQslssnAKgEkG4CrqMJanCR2wq/HKnBuGBmBVANdivuHG+u9o/p0NBhHOEp0Cf8pZuKNAECXUdAKT8SkQfQjD8VBgz0DIZRhRCL4Mw2hEEYPgG1GYrTgiEKwVM0WhXkYRMQ64LiMewDX5irqOI2Qc8L6O3VEQHEgiZhxYPpDwAK4xPOhIFiEA/yOZKxX8OB50KF0lROCh1KM41LE8BCDhsXwRIsSHiQgI8Q+TRYi1fJp5e7Rmj1PfsP6v5/k/4Rp65G+63UoAAAAASUVORK5CYII=">
+        <link rel="icon" href='data:image/svg+xml,%3Csvg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="16" cy="16" r="16" fill="%23ff6347" /%3E%3Ctext x="16" y="26" fill="%23008000" text-anchor="middle" style="font-size:32px;font-family:cursive"%3E*%3C/text%3E%3C/svg%3E'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script>
             /*
@@ -66,16 +66,6 @@
                 const canvas = document.createElement('canvas')
                 canvas.height = canvas.width = 32
 
-                const ctx = canvas.getContext('2d')
-                ctx.fillStyle = '#ff6347'
-                ctx.beginPath()
-                ctx.arc(16, 16, 16, 0, 2 * Math.PI)
-                ctx.fill()
-                ctx.font = '32px cursive'
-                ctx.textBaseline = 'center'
-                ctx.textAlign = 'center'
-                ctx.fillStyle = count ? '#fff' : '#008000'
-                ctx.fillText(count || '*', 16, 26, 32)
                 document.title = count || 'Timer'
 
                 const o = document.querySelectorAll('link[rel="icon"]')
@@ -85,7 +75,7 @@
 
                 const link = document.createElement('link')
                 link.setAttribute('rel', 'icon')
-                link.setAttribute('href', canvas.toDataURL())
+                link.setAttribute('href', `data:image/svg+xml,%3Csvg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="16" cy="16" r="16" fill="%23ff6347" /%3E%3Ctext x="16" y="26" fill="${count ? '%23fff' : '%23008000'}" text-anchor="middle" style="font-size:32px;font-family:cursive"%3E${count || '*'}%3C/text%3E%3C/svg%3E`)
                 document.querySelector('head').appendChild(link)
             }
 
