@@ -55,17 +55,13 @@
                 })
 
                 for (let day in days) {
-                    fragment.append(document.createTextNode(`${day} ${days[day]} ${new Array(days[day] + 1).join('🍅')}\n`))
+                    fragment.append(document.createTextNode(`${day} ${days[day]}	${new Array(days[day] + 1).join('🍅')}\n`))
                 }
 
                 results.replaceChildren(fragment)
             }
 
             function display(count) {
-
-                const canvas = document.createElement('canvas')
-                canvas.height = canvas.width = 32
-
                 document.title = count || 'Timer'
 
                 const o = document.querySelectorAll('link[rel="icon"]')
@@ -136,6 +132,6 @@
     </head>
     <body>
         <button id="start">Таймер</button>
-        <pre id="results"></pre>
+        <pre id="results" style="tab-size:3;"></pre>
     </body>
 </html>
