@@ -11,7 +11,6 @@
             - service worker for offline
             - ограничение в LS на 1 год
             - аналитика на canvas
-            - недельный таргет
             */
 
             function notify(title) {
@@ -40,25 +39,43 @@
 
             function render(data) {
                 const results = document.getElementById('results')
+                const target = document.getElementById('target')
                 const fragment = document.createDocumentFragment()
                 const days = {}
+                const weeks = {}
                 const week = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб']
+                const weekNumber = getNumberOfWeek(Date.now())
+                weeks[weekNumber] = weeks[weekNumber] ? weeks[weekNumber] : 0
 
                 data.split('\n').forEach(line => {
                     if (!line) {
                         return
                     }
-                    const milliseconds = Number(line.split(' ')[0])
-                    const date = new Date(milliseconds)
-                    const today = date.toISOString().slice(0, 10) + ' ' + week[date.getDay()];
-                    days[today] = days[today] ? (days[today] + 1) : 1
+                    const timestamp = Number(line.split(' ')[0])
+                    const today = new Date(timestamp)
+                    const todayStr = getTodayStr(today) + ' ' + week[today.getDay()]
+                    const weekNumber = getNumberOfWeek(today)
+                    days[todayStr] = days[todayStr] ? (days[todayStr] + 1) : 1
+                    weeks[weekNumber] = weeks[weekNumber] ? (weeks[weekNumber] + 1) : 1
                 })
 
                 for (let day in days) {
                     fragment.append(document.createTextNode(`${day} ${days[day]}	${new Array(days[day] + 1).join('🍅')}\n`))
                 }
 
+                target.innerHTML = weeks[weekNumber] + '/40'
+
                 results.replaceChildren(fragment)
+            }
+
+            function getTodayStr(today) {
+                return today.toISOString().slice(0, 10)
+            }
+
+            function getNumberOfWeek(timestamp) {
+                const firstDayOfYear = new Date(new Date(timestamp).getFullYear(), 0, 1)
+                const pastDaysOfYear = (timestamp - firstDayOfYear) / 86400000
+                return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay()) / 7)
             }
 
             function display(count) {
@@ -131,7 +148,7 @@
         </script>
     </head>
     <body>
-        <button id="start">Таймер</button>
+        <button id="start">Таймер</button> <span id="target"></span>
         <pre id="results" style="tab-size:3;"></pre>
     </body>
 </html>
