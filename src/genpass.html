@@ -5,10 +5,8 @@
         <title>Генератор паролей</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
-            body {
-                min-height: 100vh;
+            body textarea {
                 font-family: monospace;
-                white-space: pre;
             }
         </style>
         <script>
@@ -23,7 +21,14 @@
             }
 
             function main() {
-                document.body.innerHTML = generatePassword()
+                const textarea = document.createElement('textarea')
+                const value = generatePassword()
+                document.body.appendChild(textarea)
+                textarea.value = value
+                textarea.rows = 2
+                textarea.cols = 30
+                textarea.select()
+                navigator.clipboard.writeText(value)
             }
 
             document.addEventListener('DOMContentLoaded', main)
