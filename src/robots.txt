@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /CNAME
 Disallow: /yandex_399494b1911614a5.html
-Sitemap: https://voischev.ru/sitemap.txt
+Sitemap: https://ivan.voischev.ru/sitemap.txt

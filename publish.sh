@@ -2,14 +2,6 @@
 
 ./build.sh
 
-echo "Создаём архив"
-tar -P -czf /tmp/voischev.ru.tar.gz build/
-rm -rf build
-
-echo "Отправка на сервер"
-scp /tmp/voischev.ru.tar.gz voischev@voischev:/tmp/
-
-echo "Публикация на сервере"
-ssh voischev bash -s < scripts/server_publish
+s3cmd put --recursive build/ s3://ivan.voischev.ru
 
 echo "Успешно"

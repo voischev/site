@@ -1,6 +1,7 @@
 #!/bin/bash
 
-npm run make
+yaspeller ./src
+./make.js
 
 rm -rf build
 cp -a src/. build
@@ -13,7 +14,7 @@ echo "Создаём Sitemap"
 cd build
 SITEMAP=sitemap.txt
 touch $SITEMAP
-echo "https://voischev.ru/" > $SITEMAP
-find ./{t,invest} -type d | sed "s/^\./https:\/\/voischev.ru/" | sed "s/$/\//" >> $SITEMAP
-find ./{t,invest} -name "*.pdf" | sed "s/^./https:\/\/voischev.ru/" >> $SITEMAP
+echo "https://ivan.voischev.ru/" > $SITEMAP
+find ./{t,invest} -type d | sed "s/^\./https:\/\/ivan.voischev.ru/" | sed "s/$/\//" >> $SITEMAP
+find ./{t,invest} -name "*.pdf" | sed "s/^./https:\/\/ivan.voischev.ru/" >> $SITEMAP
 cd ..

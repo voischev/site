@@ -69,7 +69,7 @@ const makeHead = function(tree, options = {}) {
         publishedTime
     } = options
 
-    const url = 'https://voischev.ru' + canonical
+    const url = 'https://ivan.voischev.ru' + canonical
 
     tree.walk.bind(head)(function(node) {
         if (title === undefined) {

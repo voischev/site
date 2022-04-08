@@ -1,1 +1,1 @@
-[Перейти на сайт](https://voischev.ru)
+[Перейти на сайт](https://ivan.voischev.ru)
