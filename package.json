@@ -1,11 +1,10 @@
 {
-  "name": "voischev.github.io",
+  "name": "voischev.ru",
   "version": "1.0.0",
   "description": "Личный сайт",
   "main": "index.html",
   "scripts": {
-    "make": "yaspeller ./src && ./make",
-    "publish": "./publish",
+    "make": "yaspeller ./src && ./make.js",
     "server": "http-server src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

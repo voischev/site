@@ -17,15 +17,3 @@ echo "https://voischev.ru/" > $SITEMAP
 find ./{t,invest} -type d | sed "s/^\./https:\/\/voischev.ru/" | sed "s/$/\//" >> $SITEMAP
 find ./{t,invest} -name "*.pdf" | sed "s/^./https:\/\/voischev.ru/" >> $SITEMAP
 cd ..
-
-echo "Создаём архив"
-tar -P -czf /tmp/voischev.ru.tar.gz build/
-rm -rf build
-
-echo "Отправка на сервер"
-scp /tmp/voischev.ru.tar.gz voischev@voischev:/tmp/
-
-echo "Публикация на сервере"
-ssh voischev bash -s < scripts/server_publish
-
-echo "Успешно"
