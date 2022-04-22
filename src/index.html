@@ -30,5 +30,10 @@
             <a href="/timer.html" target="_blank">Таймер</a>
             <a href="/genpass.html" target="_blank">Генератор паролей</a>
         </aside>
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('./sw.js')
+            }
+        </script>
     </body>
 </html>
