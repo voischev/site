@@ -17,6 +17,15 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(networkOrCache(event.request));
 });
 
+self.addEventListener('activate', (event) => {
+    event.waitUntil(caches.keys().then((keyList) => {
+        return Promise.all(keyList.map((key) => {
+            if (key !== CACHE) { return; }
+            return caches.delete(key);
+        }))
+    }));
+});
+
 async function networkOrCache(request) {
     let isCache = false;
     const response = await fetch(request).catch(() => (isCache = true, caches.match(request)));
