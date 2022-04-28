@@ -20,7 +20,7 @@ self.addEventListener('fetch', (event) => {
 self.addEventListener('activate', (event) => {
     event.waitUntil(caches.keys().then((keyList) => {
         return Promise.all(keyList.map((key) => {
-            if (key !== CACHE) { return; }
+            if (key === CACHE) { return; }
             return caches.delete(key);
         }))
     }));
