@@ -4,7 +4,6 @@ const CACHES_PATH = [
     '/timer.html',
     '/timer.js',
     '/genpass.html',
-    '/board.html',
     '/style.css',
     '/avatar.jpg',
 ];
