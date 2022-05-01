@@ -2,10 +2,6 @@
   "scripts": {
     "server": "http-server src"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/voischev/site.git"
-  },
   "author": "voischev.ivan@ya.ru",
   "license": "CC-BY-SA-4.0",
   "dependencies": {
