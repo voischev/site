@@ -57,4 +57,5 @@ function moexTickerLast(ticker) {
 ## Ссылки
 
 * [API Московской Биржи](https://iss.moex.com/iss/reference/)
+* [Документация и примеры](https://www.moex.com/a2193)
 * [API Центрального банка](https://cbr.ru/development/SXML/)
