@@ -36,9 +36,16 @@
                 return num
             }
 
-            function render(data) {
+            function render(data, onClick) {
+                document.body.innerHTML = `
+                    <button id="start" tabindex="1">Таймер</button>
+                    <span id="target"></span>
+                    <pre id="results" style="tab-size:3;"></pre>
+                `;
+
                 const results = document.getElementById('results')
                 const target = document.getElementById('target')
+                const start = document.getElementById('start')
                 const fragment = document.createDocumentFragment()
                 const days = {}
                 const weeks = {}
@@ -65,6 +72,8 @@
                 target.innerHTML = weeks[weekNumber] + '/40'
 
                 results.replaceChildren(fragment)
+
+                start.onclick = onClick
             }
 
             function getTodayStr(today) {
@@ -89,6 +98,17 @@
                 link.setAttribute('rel', 'icon')
                 link.setAttribute('href', `data:image/svg+xml,%3Csvg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="16" cy="16" r="16" fill="%23ff6347" /%3E%3Ctext x="16" y="26" fill="${count ? '%23fff' : '%23008000'}" text-anchor="middle" style="font-size:32px;font-family:cursive"%3E${count || '*'}%3C/text%3E%3C/svg%3E`)
                 document.querySelector('head').appendChild(link)
+
+                document.body.innerHTML = `
+                    <style>
+                        svg {
+                            height: 90vh;
+                            display: block;
+                            margin: 0 auto;
+                        }
+                    </style>
+                    <svg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'><circle cx='16' cy='16' r='16' fill='#ff6347' /><text x='16' y='26' fill='${count ? '#fff' : '#008000'}' text-anchor='middle' style='font-size:32px;font-family:cursive'>${count || '*'}</text></svg>
+                `;
             }
 
             class DataBase {
@@ -104,50 +124,41 @@
             }
 
             function main() {
-                const timerWorker = new Worker('timer.js');
-
                 const db = new DataBase()
                 const data = db.getItem()
 
                 if (data) {
-                    render(data)
-                }
+                    const timerWorker = new Worker('timer.js');
 
-                const start = document.getElementById('start')
-                start.onclick = function() {
-                    start.disabled = true
+                    const onClick = () => {
+                        timerWorker.postMessage(25)
+                        timerWorker.onmessage = function(event) {
+                            const minutes = event.data
 
-                    const minutes = 25
+                            if (minutes) {
+                                display(minutes)
+                                return
+                            }
 
-                    timerWorker.postMessage(minutes)
-                    timerWorker.onmessage = function(event) {
-                        const minutes = event.data
-
-                        if (minutes) {
+                            const timeEnd = Date.now()
+                            const timeStart = timeEnd - minutes * 60
+                            let data = db.getItem() || ''
+                            data = `${timeStart} ${timeEnd}\n` + data
+                            db.setItem(data)
+                            notify('Закончилась помидорка')
                             display(minutes)
-                            start.innerText = minutes
-                            return
+                            render(data, onClick)
                         }
-
-                        start.disabled = false
-                        start.innerText = 'Таймер'
-                        const timeEnd = Date.now()
-                        const timeStart = timeEnd - minutes * 60
-                        let data = db.getItem() || ''
-                        data = `${timeStart} ${timeEnd}\n` + data
-                        db.setItem(data)
-                        notify('Закончилась помидорка')
-                        render(data)
-                        display(minutes)
                     }
+
+                    render(data, onClick)
                 }
+
             }
 
             document.addEventListener('DOMContentLoaded', main)
         </script>
     </head>
     <body>
-        <button id="start" tabindex="1">Таймер</button> <span id="target"></span>
-        <pre id="results" style="tab-size:3;"></pre>
     </body>
 </html>
