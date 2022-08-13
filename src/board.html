@@ -9,6 +9,7 @@
                 white-space: pre;
             }
         </style>
+        <script src="main.js" defer></script>
         <script>
             function _getColumnData(table, column) {
                 const { columns, data } = table
@@ -62,7 +63,7 @@
 
                 reader.onload = function() {
                     const text = reader.result
-                    render(text)
+                    render({ data: text })
                 }
 
                 reader.onerror = function() {
@@ -70,12 +71,17 @@
                 }
 
                 reader.readAsText(file)
-
             }
 
-            function render(text) {
+            function render(data) {
+                if (data.html) {
+                    document.body.innerHTML = data.html;
+                    return;
+                };
+
                 let count = 0
-                const rowData = text.split('\n')
+                const rowData = data.data.split('\n')
+
                 document.body.innerHTML = 'Загрузка ' + count + '/' + rowData.length
 
                 Promise.all(rowData.map(line => makeData(line).then(lineData => {
@@ -95,16 +101,48 @@
                     sortData.forEach(line => fragment.append(document.createTextNode(line.join('\t') + '\n')))
 
                     document.body.append(fragment)
-                })
+                });
 
-                window.localStorage.setItem('targets', text)
+                db(text);
             }
 
-            function main() {
-                const storageTargets = window.localStorage.getItem('targets')
+            async function db(data) {
+                const token = window.localStorage.getItem('token');
 
-                if (storageTargets) render(storageTargets)
-                else document.body.innerHTML = 'Перетащи текстовый файл с таргетами'
+                if (token) {
+                    if (data) {
+                        const encodeData = encodeURIComponent(`${data}`);
+                        await jsonp(`https://api.vk.com/method/storage.set/?key=targets&value=${encodeData}&${token}&v=5.131`);
+                        return;
+                    }
+                    const { response, error } = await jsonp(`https://api.vk.com/method/storage.get/?key=targets&${token}&v=5.131`);
+                    if (error) {
+                        return {
+                            html: error.error_msg
+                        };
+                    }
+                    return {
+                        data: response && response[0].value
+                    };
+                } else {
+                    if (data) {
+                        window.localStorage.setItem('targets', data)
+                        return;
+                    }
+                    return {
+                        data: window.localStorage.getItem('targets')
+                    };
+                }
+            };
+
+            async function main() {
+                const data = await db();
+
+                if (data.data) {
+                    render(data);
+                } else {
+                    render({ html: '<a href="https://oauth.vk.com/authorize?client_id=8220799&display=page&redirect_uri=https://ivan.voischev.ru/redirect.html&scope=notify&response_type=token&scope=offline&v=5.131">Залогинься через vk.com</a>, или перетащи текстовый файл с таргетами' });
+                }
 
                 document.addEventListener('dragover', e => {
                     e.preventDefault()

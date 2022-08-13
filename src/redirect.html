@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Редирект</title>
+        <script src="main.js" defer></script>
+        <script>
+            function main() {
+                const hash = location.hash;
+                if (hash) {
+                    const token = hash.replace('#', '').split('&')[0];
+                    localStorage.setItem('token', token);
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', main);
+        </script>
+    </head>
+</html>
