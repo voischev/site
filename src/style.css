@@ -16,11 +16,12 @@ a:hover {
 
 nav {
     padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 nav a {
     margin-right: 4px;
-    line-height: 34px;
     vertical-align: top;
     font-weight: bold;
     border: 0;
@@ -64,7 +65,7 @@ li a {
     border: 0;
 }
 
-li a:hover, nav a:hover {
+li a:hover {
     border-bottom: 1px solid;
 }
 
