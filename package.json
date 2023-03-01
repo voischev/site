@@ -4,9 +4,9 @@
   },
   "author": "voischev.ivan@ya.ru",
   "license": "CC-BY-SA-4.0",
-  "dependencies": {
-    "marked": "^4.0.0",
-    "posthtml": "^0.12.0",
+  "devDependencies": {
+    "marked": "^4.2.12",
+    "posthtml": "^0.16.6",
     "posthtml-toc": "^1.0.3",
     "yaspeller": "^8.0.1"
   }
