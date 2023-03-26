@@ -148,7 +148,18 @@ const makePage = function(mdPath, cb) {
                 }
 
                 description = node.content[0]
-                return node
+                return [
+                    node,
+                    { tag: 'div', attrs: { id: 'yandex_rtb_R-A-2278012-1' }},
+                    { tag: 'script', content: [
+                        'window.yaContextCb.push(()=>{',
+                        'Ya.Context.AdvManager.render({',
+                        'renderTo:"yandex_rtb_R-A-2278012-1",',
+                        'blockId:"R-A-2278012-1"',
+                        '})',
+                        '})',
+                    ].join('')}
+                ];
             })
 
             const head = makeHead(tree, {
