@@ -8,6 +8,6 @@
     "marked": "^4.2.12",
     "posthtml": "^0.16.6",
     "posthtml-toc": "^1.0.3",
-    "yaspeller": "^8.0.1"
+    "yaspeller": "^10.0.1"
   }
 }
